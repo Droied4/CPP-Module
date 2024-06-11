@@ -16,7 +16,7 @@ SOURCES_PATH    = ./src
 INCLUDE_PATH    = ./inc
 OBJECTS_PATH    = ./obj
 
-HEADER = $(INCLUDE_PATH)/PhoneBookClasses.h
+HEADER = $(INCLUDE_PATH)/Contact.hpp $(INCLUDE_PATH)/Phone.hpp
 SOURCES = main.cpp PhoneBook.cpp Contact.cpp
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
