@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:31:25 by deordone          #+#    #+#             */
-/*   Updated: 2024/06/11 23:00:30 by droied           ###   ########.fr       */
+/*   Updated: 2024/06/11 23:58:52 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class Phone
 	public:
 		Phone(void);
 		~Phone(void);
+		void	addContact(void);
 		void	welcome(void) const;
 };
 
