@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:37:21 by deordone          #+#    #+#             */
-/*   Updated: 2024/06/12 00:00:33 by droied           ###   ########.fr       */
+/*   Updated: 2024/06/15 19:00:17 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void Phone::welcome(void) const
 	std::cout << "Welcome to your Phone Book ☎️  " << std::endl;
 	std::cout << std::endl;
 	std::cout << "•---------• USAGE •---------•" << std::endl;
-	std::cout << "ADD : To add a contact." << std::endl;
-	std::cout << "SEARCH : To search for a contact." << std::endl;
-	std::cout << "EXIT : to quite the PhoneBook." << std::endl;
+	std::cout << "1. ADD : To add a contact." << std::endl;
+	std::cout << "2. SEARCH : To search for a contact." << std::endl;
+	std::cout << "3. EXIT : to quite the PhoneBook." << std::endl;
 	std::cout << "•----------------------------•";
 	std::cout << std::endl;
 }
