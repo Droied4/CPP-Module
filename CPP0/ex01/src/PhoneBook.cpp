@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:37:21 by deordone          #+#    #+#             */
-/*   Updated: 2024/06/15 19:00:17 by droied           ###   ########.fr       */
+/*   Updated: 2024/06/21 23:03:42 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ Phone::Phone(void)
 Phone::~Phone(void)
 {
 }
+/*
+void Phone::findContact(unsigned int i)
+{
+	
+}*/
 
 void Phone::addContact(void)
 {

@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:31:25 by deordone          #+#    #+#             */
-/*   Updated: 2024/06/11 23:53:34 by droied           ###   ########.fr       */
+/*   Updated: 2024/06/21 22:59:03 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ class Contact
 		std::string _darkestSecret;
 
 		std::string _getInfo(std::string str) const;
-	
 	public:
 		Contact(void);
 		~Contact(void);

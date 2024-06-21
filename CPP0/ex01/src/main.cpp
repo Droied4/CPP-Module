@@ -6,17 +6,16 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:44:24 by deordone          #+#    #+#             */
-/*   Updated: 2024/06/15 19:01:26 by droied           ###   ########.fr       */
+/*   Updated: 2024/06/21 23:16:14 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "Phone.hpp"
-#include "Contact.hpp"
 
-int main (void)
+int	main(void)
 {
-	Phone 	MyPhone;
+	Phone	MyPhone;
+
 	std::string input = "";
 	MyPhone.welcome();
 	while (getline(std::cin, input))
@@ -29,7 +28,7 @@ int main (void)
 			std::cout << "search received\n";
 		else
 			std::cout << "Invalid Input" << std::endl;
+		MyPhone.welcome();
 	}
 	return (0);
 }
-
