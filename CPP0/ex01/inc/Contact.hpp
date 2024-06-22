@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:31:25 by deordone          #+#    #+#             */
-/*   Updated: 2024/06/22 02:06:08 by droied           ###   ########.fr       */
+/*   Updated: 2024/06/22 21:43:10 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ class Contact
 		~Contact(void);
 
 		std::string	getContactInfo(int i);
+		int			getIndex(void);
+		bool 		infoExist(void);
 		void		init(int i);
 };
 

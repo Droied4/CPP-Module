@@ -6,11 +6,13 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:39:27 by deordone          #+#    #+#             */
-/*   Updated: 2024/06/22 02:11:06 by droied           ###   ########.fr       */
+/*   Updated: 2024/06/22 21:42:36 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <string>
+#include <bits/stdc++.h>
 #include "Contact.hpp"
 
 Contact::Contact(void)
@@ -23,39 +25,33 @@ Contact::~Contact(void)
         return ;
 }
 
+bool Contact::infoExist(void)
+{
+	if (this->_firstName.empty())
+		return (false);
+	else
+		return (true);
+}
+
+int	Contact::getIndex(void)
+{
+	return (this->_index);
+}
+
 std::string Contact::getContactInfo(int i)
 {
-	switch (i) 
+	switch (i)
 	{
 		case 0 :
-			//retornar el indice pero necesito hacer un itoa
-				return ("0");
-			break ;
+				return (this->_firstName);		
 		case 1 :
-			if (!this->_firstName.empty()) //por alguna razon no funca
-				return ("a");		
-			return (this->_firstName);		
-			break ;
+				return (this->_lastName);		
 		case 2 :
-			if (!this->_lastName.empty())
-				return ("a");		
-			return (this->_lastName);		
-			break ;
+				return (this->_nickName);		
 		case 3 :
-			if (!this->_nickName.empty())
-				return ("a");		
-			return (this->_nickName);		
-			break ;
+				return (this->_phoneNumber);
 		case 4 :
-			if (!this->_phoneNumber.empty())
-				return ("a");		
-			return (this->_phoneNumber);
-			break ;
-		case 5 :
-			if (!this->_darkestSecret.empty())
-				return ("a");		
-			return (this->_darkestSecret);
-			break ;
+				return (this->_darkestSecret);
 	}
 	return (NULL);
 }
@@ -82,7 +78,7 @@ void	Contact::init(int i)
 {
 	std::string input("");
 	std::cout << "\nAdding New Contact" << std::endl;
-	this->_index = i;
+	this->_index = i + 1;
 	this->_firstName = this->_getInfo("Please enter a first name: ");
 	this->_lastName = this->_getInfo("Please enter a last name: ");
 	this->_nickName = this->_getInfo("Please enter a nickname ");

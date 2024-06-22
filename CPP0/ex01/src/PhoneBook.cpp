@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:37:21 by deordone          #+#    #+#             */
-/*   Updated: 2024/06/22 02:04:29 by droied           ###   ########.fr       */
+/*   Updated: 2024/06/22 21:46:53 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ Phone::~Phone(void)
 static void print_index(void)
 {
 	std::vector<std::string> header;
-	header.push_back(" Index");
+	header.push_back("  Index ");
     header.push_back(" First Name");
-    header.push_back(" Last Name");
-    header.push_back(" Nickname");
+    header.push_back(" Last Name ");
+    header.push_back(" Nick name ");
 	for (size_t i = 0; i < header.size(); i++) 
 	{
 		std::cout << " |";
@@ -55,16 +55,36 @@ static void print_header(void)
 
 void Phone::findContact(void)
 {
+	std::string info("");
+	int j(-1);
 	int i(-1);
 
 	print_header();
 	print_index();
-	while (++i < 4)
+	while (this->_contacts[++j].infoExist() && j < 8)
 	{
+		i = 0;
 		std::cout << " | ";
-		std::cout << this->_contacts[i].getContactInfo(i);
+		std::cout << "   " <<  this->_contacts[j].getIndex() << "   ";
+		while (i < 3)
+		{
+			std::cout << " | ";
+			info = this->_contacts[j].getContactInfo(i);
+			if (info.size() >= 10)
+			{
+				info[9] = '.';
+				info.erase(10, info.size());
+			}
+			else 
+			{
+				while (info.size() < 10)
+					info.append(" ");	
+			}
+			std::cout << info;
+			i++;
+		}
+		std::cout << " |\n";
 	}
-	std::cout << " |\n";
 }
 
 void Phone::addContact(void)
