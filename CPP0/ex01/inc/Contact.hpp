@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:31:25 by deordone          #+#    #+#             */
-/*   Updated: 2024/06/21 22:59:03 by droied           ###   ########.fr       */
+/*   Updated: 2024/06/22 02:06:08 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 class Contact
 {
 	private:
-		int 		index;
+		int			_index;
 		std::string _firstName;
 		std::string _lastName;
 		std::string _nickName;
@@ -28,7 +28,9 @@ class Contact
 	public:
 		Contact(void);
 		~Contact(void);
-		void	init(void);
+
+		std::string	getContactInfo(int i);
+		void		init(int i);
 };
 
 #endif

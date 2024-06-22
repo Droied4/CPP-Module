@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:37:21 by deordone          #+#    #+#             */
-/*   Updated: 2024/06/21 23:03:42 by droied           ###   ########.fr       */
+/*   Updated: 2024/06/22 02:04:29 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,60 @@ Phone::Phone(void)
 Phone::~Phone(void)
 {
 }
-/*
-void Phone::findContact(unsigned int i)
+
+static void print_index(void)
 {
-	
-}*/
+	std::vector<std::string> header;
+	header.push_back(" Index");
+    header.push_back(" First Name");
+    header.push_back(" Last Name");
+    header.push_back(" Nickname");
+	for (size_t i = 0; i < header.size(); i++) 
+	{
+		std::cout << " |";
+		std::cout << header[i];
+	}
+	std::cout << " |\n";
+}
+
+static void print_header(void)
+{
+	std::cout << " ";
+	for (size_t j = 0; j < 48; j++)
+		std::cout << "-";
+	std::cout << "\n|";
+	for (size_t j = 0; j < 20; j++)
+		std::cout << " ";
+	std::cout << "DIRECTORY";
+	for (size_t j = 0; j < 19; j++)
+		std::cout << " ";
+	std::cout << "|\n ";
+	for (size_t j = 0; j < 48; j++)
+		std::cout << "-";
+	std::cout << "\n";
+}
+
+void Phone::findContact(void)
+{
+	int i(-1);
+
+	print_header();
+	print_index();
+	while (++i < 4)
+	{
+		std::cout << " | ";
+		std::cout << this->_contacts[i].getContactInfo(i);
+	}
+	std::cout << " |\n";
+}
 
 void Phone::addContact(void)
 {
-	static int i;
-	this->_contacts[i % 8].init();
-	i++;
+	static int i(-1);
+	++i;
+	if (i > 8)
+		i = 0;
+	this->_contacts[i].init(i);
 }
 
 void Phone::welcome(void) const 
