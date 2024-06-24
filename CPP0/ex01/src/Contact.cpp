@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:39:27 by deordone          #+#    #+#             */
-/*   Updated: 2024/06/24 09:41:21 by deordone         ###   ########.fr       */
+/*   Updated: 2024/06/24 10:39:13 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	Contact::init(void)
 	std::cout << "\nAdding New Contact" << std::endl;
 	this->_firstName = this->_getInfo("Please enter a first name: ");
 	this->_lastName = this->_getInfo("Please enter a last name: ");
-	this->_nickName = this->_getInfo("Please enter a nickname ");
+	this->_nickName = this->_getInfo("Please enter a nickname : ");
 	this->_phoneNumber = this->_getInfo("Please enter a phone number: ");
 	this->_darkestSecret = this->_getInfo("Please enter the darkest Secret: ");
 	std::cout << "\nPress \"0\" to exit..." << std::endl;
