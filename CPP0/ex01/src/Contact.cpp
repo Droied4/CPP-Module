@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:39:27 by deordone          #+#    #+#             */
-/*   Updated: 2024/06/22 21:42:36 by droied           ###   ########.fr       */
+/*   Updated: 2024/06/24 09:41:21 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,15 @@ std::string	Contact::_getInfo(std::string str) const
 	return (input);
 }
 
-void	Contact::init(int i)
+void    Contact::setIndex(int i) 
+{
+    this->_index = i + 1;
+}
+
+void	Contact::init(void)
 {
 	std::string input("");
 	std::cout << "\nAdding New Contact" << std::endl;
-	this->_index = i + 1;
 	this->_firstName = this->_getInfo("Please enter a first name: ");
 	this->_lastName = this->_getInfo("Please enter a last name: ");
 	this->_nickName = this->_getInfo("Please enter a nickname ");

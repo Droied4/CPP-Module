@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 15:37:21 by deordone          #+#    #+#             */
-/*   Updated: 2024/06/22 21:46:53 by droied           ###   ########.fr       */
+/*   Updated: 2024/06/24 09:41:13 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,11 @@ void Phone::findContact(void)
 
 void Phone::addContact(void)
 {
-	static int i(-1);
-	++i;
-	if (i > 8)
-		i = 0;
-	this->_contacts[i].init(i);
-}
+	static int i(0);
+	this->_contacts[i % 8].init();
+	this->_contacts[i % 8].setIndex(i % 8);
+	i++;
+	}
 
 void Phone::welcome(void) const 
 {
