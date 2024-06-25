@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 11:34:36 by deordone          #+#    #+#             */
-/*   Updated: 2024/06/25 01:56:26 by droied           ###   ########.fr       */
+/*   Updated: 2024/06/25 02:02:01 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ bool	Account::makeWithdrawal( int withdrawal )
 	_nbWithdrawals++;
 	_totalNbWithdrawals++;
 	_amount -= withdrawal;
+	_totalAmount -= withdrawal;
 	std::cout << "p_amount:" << _amount + withdrawal << ";"
 		<< "withdrawal:" << withdrawal << ";"
 		<< "amount:" << _amount << ";"
@@ -126,11 +127,4 @@ void	Account::_displayTimestamp( void )
 
 	strftime(buffer, 80, "%Y%m%d_%H%M%S", ltime);
 	printf("[%s] ", buffer);
-/*
-    std::cout << "[" << 1900 + ltime->tm_year
-		<< "0" << 1 + ltime->tm_mon
-		<< ltime->tm_mday << "_"
-		<< 5 + ltime->tm_hour
-		<< 30 + ltime->tm_min
-		<< ltime->tm_sec << "] ";*/
 }
