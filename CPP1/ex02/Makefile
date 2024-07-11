@@ -6,28 +6,25 @@
 #    By: droied <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 02:04:22 by droied            #+#    #+#              #
-#    Updated: 2024/07/12 00:42:20 by droied           ###   ########.fr        #
+#    Updated: 2024/07/12 00:42:32 by droied           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               CPP0                                        #
 # ╚══════════════════════════════════════════════════════════════════════════╝ #  
-NAME        = Brain0
+NAME        = Brain2
 OS = $(shell uname)
 CC = g++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -I $(INCLUDE_PATH)
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               SOURCES                                        #
 # ╚══════════════════════════════════════════════════════════════════════════╝ #  
 
-SOURCES_PATH    = ./src
-INCLUDE_PATH	= ./inc
+SOURCES_PATH    = ./
 OBJECTS_PATH    = ./obj
-
-HEADER = $(INCLUDE_PATH)/Zombie.hpp
-SOURCES = main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
+SOURCES = main.cpp
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               OBJECTS                                        #
@@ -51,17 +48,18 @@ NC=\033[0m # No color
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               MANDATORY RULES                                #
 # ╚══════════════════════════════════════════════════════════════════════════╝ #  
+
 all: $(NAME)
 
 -include $(DEPS)
 $(NAME): $(OBJECTS)
-	@printf "$(CYAN)$@ Compiled$(NC)\n"
+	@printf "$(CYAN)$@ Compiled$(NC)\n";
 	@$(CC) $(CFLAGS) $^ -o $(NAME)
 
-$(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.cpp $(HEADER) Makefile
-	@printf "$(CYAN)Compiling $@$(NC)\n";
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@ 
+$(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.cpp Makefile
+		@printf "$(CYAN)Compiling $@$(NC)\n";
+		@mkdir -p $(dir $@)
+		@$(CC) $(CFLAGS) -c $< -o $@ 
 
 clean:
 	@printf "$(CYAN)Cleaning objects and libraries$(NC)\n";
@@ -71,7 +69,7 @@ fclean : clean
 	@printf "$(CYAN)Cleaning objects, libraries and executable$(NC)\n";
 	@rm -rf $(NAME)
 
-re: all clean fclean 
+re: fclean all 
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               MY RULES                                          #
