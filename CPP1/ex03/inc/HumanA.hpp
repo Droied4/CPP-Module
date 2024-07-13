@@ -6,18 +6,26 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 17:45:24 by deordone          #+#    #+#             */
-/*   Updated: 2024/07/13 18:02:18 by deordone         ###   ########.fr       */
+/*   Updated: 2024/07/13 20:45:50 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#ifndef HUMANA_HPP
+#define HUMANA_HPP
 
-class HumanA {
+# include <iostream>
+# include "Weapon.hpp"
+
+class HumanA 
+{
 	private : 
 		std::string _name;
-		Weapon weapon;
+		Weapon *_weapon;
 	public :
-		HumanA(std::string name, Weapong weapon);
+		HumanA(std::string name, Weapon weapon);
 		~HumanA();
-		void	attack(std::string name, Weapon weapon);
-}
+
+		void	attack();
+};
+
+#endif /* HUMANA_HPP */ 
