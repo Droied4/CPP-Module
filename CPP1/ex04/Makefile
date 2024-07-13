@@ -3,28 +3,31 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: deordone <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: droied <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/07/13 17:03:46 by deordone          #+#    #+#              #
-#    Updated: 2024/07/13 20:53:58 by deordone         ###   ########.fr        #
+#    Created: 2024/06/25 02:04:22 by droied            #+#    #+#              #
+#    Updated: 2024/07/13 20:54:52 by deordone         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               CPP1                                        #
 # ╚══════════════════════════════════════════════════════════════════════════╝ #  
-NAME        = Brain2
+NAME        = Brain4
 OS = $(shell uname)
 CC = g++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -I $(INCLUDE_PATH)
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               SOURCES                                        #
 # ╚══════════════════════════════════════════════════════════════════════════╝ #  
 
-SOURCES_PATH    = ./
+SOURCES_PATH    = ./src
+INCLUDE_PATH	= ./inc
 OBJECTS_PATH    = ./obj
-SOURCES = main.cpp
+
+HEADER = $(INCLUDE_PATH)/
+SOURCES = main.cpp 
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               OBJECTS                                        #
@@ -48,18 +51,17 @@ NC=\033[0m # No color
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               MANDATORY RULES                                #
 # ╚══════════════════════════════════════════════════════════════════════════╝ #  
-
 all: $(NAME)
 
 -include $(DEPS)
 $(NAME): $(OBJECTS)
-	@printf "$(CYAN)$@ Compiled$(NC)\n";
+	@printf "$(CYAN)$@ Compiled$(NC)\n"
 	@$(CC) $(CFLAGS) $^ -o $(NAME)
 
-$(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.cpp Makefile
-		@printf "$(CYAN)Compiling $@$(NC)\n";
-		@mkdir -p $(dir $@)
-		@$(CC) $(CFLAGS) -c $< -o $@ 
+$(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.cpp $(HEADER) Makefile
+	@printf "$(CYAN)Compiling $@$(NC)\n";
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@ 
 
 clean:
 	@printf "$(CYAN)Cleaning objects and libraries$(NC)\n";
@@ -69,7 +71,7 @@ fclean : clean
 	@printf "$(CYAN)Cleaning objects, libraries and executable$(NC)\n";
 	@rm -rf $(NAME)
 
-re: fclean all 
+re: all clean fclean 
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               MY RULES                                          #
