@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 02:05:49 by droied            #+#    #+#             */
-/*   Updated: 2024/07/11 21:26:09 by droied           ###   ########.fr       */
+/*   Updated: 2024/07/13 17:01:27 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main( void )
 {
-	Zombie	*theZombie = newZombie("Linus Torvalds");
+	Zombie	*theZombie = newZombie("");
 	theZombie->announce();
 	delete theZombie;
 	return	(0);

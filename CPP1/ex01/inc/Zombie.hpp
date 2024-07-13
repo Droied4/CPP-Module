@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 02:07:48 by droied            #+#    #+#             */
-/*   Updated: 2024/07/12 00:52:03 by droied           ###   ########.fr       */
+/*   Created: 2024/07/13 17:03:29 by deordone          #+#    #+#             */
+/*   Updated: 2024/07/13 17:23:43 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,14 @@ class Zombie
 		std::string		_name;
 		unsigned int	_n;
 	public:
-		Zombie(std::string name);
+		Zombie();
 		~Zombie();
 		
 		void	announce( void ); 
+		void	setName( std::string name );
 		Zombie *zombieHorde( int N, std::string name );
 };
+
+Zombie *zombieHorde( int N, std::string name );
 
 #endif /* ZOMBIE_HPP */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/12 01:00:23 by droied            #+#    #+#             */
-/*   Updated: 2024/07/12 01:01:19 by droied           ###   ########.fr       */
+/*   Created: 2024/07/13 17:03:06 by deordone          #+#    #+#             */
+/*   Updated: 2024/07/13 17:30:36 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int main( void )
 {
-	std::cout << "cih" << std::endl;
+	Zombie *test = zombieHorde(4, "Brian Fox");
+	delete[] test;
 	return (0);
 }
