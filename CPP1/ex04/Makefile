@@ -6,7 +6,7 @@
 #    By: droied <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 02:04:22 by droied            #+#    #+#              #
-#    Updated: 2024/07/13 20:54:52 by deordone         ###   ########.fr        #
+#    Updated: 2024/07/15 01:41:29 by droied           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,17 +16,17 @@
 NAME        = Brain4
 OS = $(shell uname)
 CC = g++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -I $(INCLUDE_PATH)
+CFLAGS = -Wall -Wextra -Werror -std=c++98 #-I $(INCLUDE_PATH)
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               SOURCES                                        #
 # ╚══════════════════════════════════════════════════════════════════════════╝ #  
 
 SOURCES_PATH    = ./src
-INCLUDE_PATH	= ./inc
+#INCLUDE_PATH	= ./inc
 OBJECTS_PATH    = ./obj
 
-HEADER = $(INCLUDE_PATH)/
+#HEADER = $(INCLUDE_PATH)/main.hpp
 SOURCES = main.cpp 
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
@@ -58,7 +58,7 @@ $(NAME): $(OBJECTS)
 	@printf "$(CYAN)$@ Compiled$(NC)\n"
 	@$(CC) $(CFLAGS) $^ -o $(NAME)
 
-$(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.cpp $(HEADER) Makefile
+$(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.cpp #$(HEADER) Makefile
 	@printf "$(CYAN)Compiling $@$(NC)\n";
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@ 
