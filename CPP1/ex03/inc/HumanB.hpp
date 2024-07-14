@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 18:00:02 by deordone          #+#    #+#             */
-/*   Updated: 2024/07/13 20:47:16 by deordone         ###   ########.fr       */
+/*   Updated: 2024/07/15 01:19:09 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class HumanB {
 		~HumanB();
 
 		void	attack( void );
-		void	setWeapon(Weapon weapon);
+		void	setWeapon(Weapon &weapon);
 };
 
 #endif /* HUMANB_HPP */

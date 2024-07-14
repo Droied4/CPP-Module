@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 20:29:08 by deordone          #+#    #+#             */
-/*   Updated: 2024/07/13 20:50:31 by deordone         ###   ########.fr       */
+/*   Updated: 2024/07/15 01:18:52 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 HumanB::HumanB( std::string name )
 {
 	this->_name = name;
+	this->_weapon = NULL;
 }
 
 HumanB::~HumanB( void ){
 }
 
-void	HumanB::setWeapon( Weapon weapon )
+void	HumanB::setWeapon( Weapon &weapon )
 {
 	this->_weapon = &weapon;
 }
