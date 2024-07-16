@@ -6,14 +6,14 @@
 #    By: droied <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 02:04:22 by droied            #+#    #+#              #
-#    Updated: 2024/07/16 20:19:34 by droied           ###   ########.fr        #
+#    Updated: 2024/07/17 01:09:50 by droied           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               CPP1                                        #
 # ╚══════════════════════════════════════════════════════════════════════════╝ #  
-NAME        = Brain4
+NAME        = Brain5
 OS = $(shell uname)
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -I $(INCLUDE_PATH)
@@ -26,8 +26,8 @@ SOURCES_PATH    = ./src
 INCLUDE_PATH	= ./inc
 OBJECTS_PATH    = ./obj
 
-HEADER = $(INCLUDE_PATH)/FtFile.hpp
-SOURCES = main.cpp FtFile.cpp
+HEADER = $(INCLUDE_PATH)/Harl.hpp
+SOURCES = main.cpp Harl.cpp
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               OBJECTS                                        #

@@ -5,22 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/15 01:26:07 by droied            #+#    #+#             */
-/*   Updated: 2024/07/16 23:31:43 by droied           ###   ########.fr       */
+/*   Created: 2024/07/17 01:10:14 by droied            #+#    #+#             */
+/*   Updated: 2024/07/17 01:35:05 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FtFile.hpp"
+#include "Harl.hpp"
 
 int main ( void )
 {
-	FtFile file;
-	std::string line;
+	std::string input("default");
+	Harl 		harl;
 
-	file.openReadfile();
-	file.openWritefile("new.txt");
-	line = file.occurrence();
-	file.transcribe(line);
-	file.closeFiles();
+	while (input.compare("exit"))
+	{
+		std::cout << "Enter a level" << std::endl;
+		std::cin >> input;
+		harl.complain(input);
+	}
 	return (0);
 }

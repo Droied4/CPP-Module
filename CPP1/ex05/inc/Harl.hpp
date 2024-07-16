@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/15 01:26:07 by droied            #+#    #+#             */
-/*   Updated: 2024/07/16 23:31:43 by droied           ###   ########.fr       */
+/*   Created: 2024/07/17 01:10:43 by droied            #+#    #+#             */
+/*   Updated: 2024/07/17 01:35:22 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FtFile.hpp"
+#ifndef HARL_HPP
+#define HARL_HPP
 
-int main ( void )
+#include <iostream>
+
+class Harl
 {
-	FtFile file;
-	std::string line;
+	private:
+		void	debug( void );
+		void	info( void );
+		void	warning( void );
+		void	error( void );
+	public:
+		Harl();
+		~Harl();
+		
+		void	complain( std::string level );
+};
 
-	file.openReadfile();
-	file.openWritefile("new.txt");
-	line = file.occurrence();
-	file.transcribe(line);
-	file.closeFiles();
-	return (0);
-}
+typedef void	(Harl::*t_level) ( void );
+
+#endif /* HARL_HPP */
