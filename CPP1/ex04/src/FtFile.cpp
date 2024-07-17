@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:34:00 by droied            #+#    #+#             */
-/*   Updated: 2024/07/17 00:53:20 by droied           ###   ########.fr       */
+/*   Updated: 2024/07/17 16:30:31 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,50 +48,28 @@ std::string FtFile::getReplace( void )
 	return (this->_replace);
 }
 
-bool	FtFile::validWord(std::string content, size_t pos)
-{
-	size_t first(0);
-	size_t last(0);
-	std::string newContent;
-	std::string word;
-
-	newContent = content.substr(pos);
-	first = newContent.rfind(" ");
-	if (first == std::string::npos)
-		first = 0;
-	last = content.find(" ");
-	if (last == std::string::npos)
-		last = content.size();
-	word = content.substr(first, last);
-	std::cout << word << std::endl;
-	if (word.compare(getSearch()))
-		return (true);
-	return (false);
-}
-
 std::string FtFile::occurrence( void )
 {
 	size_t pos(0);
 	std::string line;
 	std::string content;
+	std::string definitive;
 	while (getline(this->_file, line))
 	{
 		content.append(line);
 		content.append("\n");
 	}
-	pos = content.find(getSearch());
-	while (pos != std::string::npos)
+	while (42)
 	{
-		if (validWord(content, pos))
-		{
-			content.erase(pos, getSearch().size());
-			content.insert(pos, getReplace());
-			pos = content.find(getSearch(), pos);
-		}
-		else
-			pos++;
+		pos = content.find(getSearch());
+		if (pos == std::string::npos)
+			break ;
+		definitive += content.substr(0, pos);
+		definitive += getReplace();
+		content.erase(0, pos + getSearch().size());
 	}
-	return(content);
+	definitive += content;
+	return(definitive);
 }
 
 void	FtFile::transcribe( std::string line )
