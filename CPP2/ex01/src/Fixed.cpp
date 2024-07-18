@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:40:48 by deordone          #+#    #+#             */
-/*   Updated: 2024/07/18 17:53:45 by droied           ###   ########.fr       */
+/*   Updated: 2024/07/18 18:07:38 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ Fixed &Fixed::operator=(const Fixed &obj)
 
 std::ostream &operator<<( std::ostream &out, Fixed const &obj)
 {
-	out << obj.toFloat();
-	return (out);
+	return (out << obj.toFloat());
 }
 
 /* METHODS */
