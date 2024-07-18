@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:40:48 by deordone          #+#    #+#             */
-/*   Updated: 2024/07/18 18:56:27 by droied           ###   ########.fr       */
+/*   Updated: 2024/07/18 23:33:13 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,6 @@ Fixed	Fixed::operator*(const Fixed &obj) const
 
 Fixed	Fixed::operator/(const Fixed &obj) const
 {
-	if (obj == 0)
-	{
-		std::cerr << "Division Between 0 it is not allowed" << std::endl;
-		return (obj);
-	}
 	return (this->toFloat() / obj.toFloat());
 }
 
