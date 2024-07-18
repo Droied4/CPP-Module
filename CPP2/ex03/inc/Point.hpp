@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 19:00:40 by droied            #+#    #+#             */
-/*   Updated: 2024/07/18 19:48:52 by droied           ###   ########.fr       */
+/*   Updated: 2024/07/18 23:46:02 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ class Point
 		const Fixed _y;
 	public :
 		Point();
-		Point(const Point &obj);
+		Point(const float x, const float y);
 		Point &operator=(const Point &obj); 
 		~Point();
 	
-		Point(const Fixed &a, const Fixed &b);
 		
 		Fixed	getPointX( void ) const ;
 		Fixed	getPointY( void ) const ;
 		void	setPointX( Fixed x );
 		void	setPointY( Fixed y );
 		
-		bool	bsp( Point const a, Point const b, Point const c, Point const Point);	
-}
+};
+
+bool	bsp( Point const a, Point const b, Point const c, Point const Point);	
 
 #endif /* POINT_HPP */
