@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:41:23 by deordone          #+#    #+#             */
-/*   Updated: 2024/07/17 14:18:11 by deordone         ###   ########.fr       */
+/*   Updated: 2024/07/18 12:15:12 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 class Fixed
 {
 	private:
-		int	_num;
+		int	_fixPointNum;
 		static const int octet = 8;
 	public:
 		Fixed();
-		Fixed(const Fixed &) = default;
-		Fixed &operator=(const Fixed &);
+		Fixed(const Fixed &obj);
+		Fixed &operator=(const Fixed &obj);
 		~Fixed();
 
 		int		getRawBits( void ) const;
