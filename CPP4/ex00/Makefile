@@ -6,7 +6,7 @@
 #    By: droied <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 02:04:22 by droied            #+#    #+#              #
-#    Updated: 2024/07/21 18:58:38 by deordone         ###   ########.fr        #
+#    Updated: 2024/07/28 11:36:51 by deordone         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ SOURCES_PATH    = ./src
 INCLUDE_PATH	= ./inc
 OBJECTS_PATH    = ./obj
 
-HEADER = $(INCLUDE_PATH)/Animal.hpp $(INCLUDE_PATH)/Dog.hpp $(INCLUDE_PATH)/Cat.hpp
-SOURCES = main.cpp Animal.cpp Dog.cpp Cat.cpp
+HEADER = $(INCLUDE_PATH)/Animal.hpp $(INCLUDE_PATH)/Dog.hpp $(INCLUDE_PATH)/Cat.hpp $(INCLUDE_PATH)/WrongAnimal.hpp
+SOURCES = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               OBJECTS                                        #
