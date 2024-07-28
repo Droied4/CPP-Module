@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:13:32 by deordone          #+#    #+#             */
-/*   Updated: 2024/07/27 03:47:19 by deordone         ###   ########.fr       */
+/*   Updated: 2024/07/28 11:32:51 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int main ( void )
 	Dog		Jake;
 	Cat		Felix;
 
+	std::cout << "[MY TEST]" << std::endl;
 	Lizard.makeSound();
 	Jake.makeSound();
 	Felix.makeSound();
 	
-	/* SUBJECT TEST */
-
 	std::cout << "\n\n" << std::endl ;
+	std::cout << "[SUBJECT TEST]" << std::endl;
 
 	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
