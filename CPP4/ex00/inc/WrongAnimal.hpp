@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 11:36:58 by deordone          #+#    #+#             */
-/*   Updated: 2024/07/28 11:41:23 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/02 13:45:27 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ class WrongAnimal
 		WrongAnimal &operator=(const WrongAnimal &obj);
 		~WrongAnimal();
 
-		void	makeSound( void );
+		void	makeSound( void ) const;
+		std::string getType( void ) const;
 };
 
 class WrongCat : public WrongAnimal
@@ -36,9 +37,7 @@ class WrongCat : public WrongAnimal
 		WrongCat &operator=(const WrongCat &obj);
 		~WrongCat();
 
-		void	makeSound( void );
+		void	makeSound( void ) const;
 };
-
-
 
 #endif /* WRONGANIMAL_HPP */
