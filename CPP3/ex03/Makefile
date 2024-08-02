@@ -6,7 +6,7 @@
 #    By: droied <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 02:04:22 by droied            #+#    #+#              #
-#    Updated: 2024/07/21 00:15:53 by deordone         ###   ########.fr        #
+#    Updated: 2024/08/02 13:46:46 by deordone         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ $(NAME): $(OBJECTS)
 	@printf "$(CYAN)$@ Compiled$(NC)\n"
 	@$(CC) $(CFLAGS) $^ -o $(NAME)
 
-$(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.cpp #$(HEADER) Makefile
+$(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.cpp $(HEADER) Makefile
 	@printf "$(CYAN)Compiling $@$(NC)\n";
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@ 
