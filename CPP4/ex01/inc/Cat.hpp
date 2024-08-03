@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 03:25:50 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/02 14:01:09 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/04 01:33:32 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 #define CAT_HPP
 
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 class Cat : public Animal
 {
 	private:
-		Brain *_catIdeas;
+		Brain *_catBrain;
 	public:
 		Cat();
 		Cat( const Cat &obj );
@@ -26,6 +27,7 @@ class Cat : public Animal
 		~Cat();
 
 		void makeSound( void ) const;
+		Brain *getBrain( void ) const;
 };
 
 #endif /* CAT_HPP */
