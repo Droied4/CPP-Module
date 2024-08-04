@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:29:07 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/04 21:01:31 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/04 23:36:41 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ class Character : public ICharacter
 		
 		std::string	getName( void ) const;
 		AMateria	getInventory( int idx ) const;
+		void		equip( AMateria *m );
+		void		unequip( int idx );
+		void		use( int idx, ICharacter &target );
 };
 
 #endif /* CHARACTER_HPP */

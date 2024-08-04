@@ -1,18 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/04 18:44:41 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/04 23:42:43 by deordone         ###   ########.fr       */
+/*   Created: 2024/08/04 23:43:09 by deordone          #+#    #+#             */
+/*   Updated: 2024/08/04 23:45:32 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AMateria.hpp"
+#include "MateriaSource.hpp"
 
-int main ( void )
+MateriaSource::MateriaSource()
 {
-	return (0);
+
+}
+
+MateriaSource::MateriaSource(const MateriaSource &obj)
+{
+
+}
+
+MateriaSource &MateriaSource::operator=(const MateriaSource &obj)
+{
+
+}
+
+MateriaSource::~MateriaSource()
+{
+
+}
+
+void	MateriaSource::learnMateria(AMateria *m)
+{
+
+}
+
+AMateria *createMateria(std::string const &type)
+{
+
 }
