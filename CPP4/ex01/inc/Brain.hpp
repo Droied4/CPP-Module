@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 13:49:30 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/04 01:24:03 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/04 17:22:05 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 
 class Brain
 {
-	protected:
+	private:
 		std::string *_ideas;
 	public:
 		Brain();
-		Brain(const Brain &obj);
+		Brain( Brain &obj);
 		Brain &operator=(const Brain &obj);
 		~Brain();
 

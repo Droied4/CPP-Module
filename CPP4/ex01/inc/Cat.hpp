@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 03:25:50 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/04 01:33:32 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/04 17:06:03 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class Cat : public Animal
 		~Cat();
 
 		void makeSound( void ) const;
+		void compareWith( Cat const &other );
 		Brain *getBrain( void ) const;
 };
 

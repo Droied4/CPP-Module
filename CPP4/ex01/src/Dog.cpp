@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 03:17:49 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/04 01:30:40 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/04 17:17:25 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,21 @@ Dog::Dog() : Animal::Animal("Dog")
 
 Dog::Dog(const Dog &obj) : Animal::Animal(obj)
 {
-	*this = obj;
+	this->_type = obj.getType();
+	this->_dogBrain = new Brain(*(obj.getBrain()));
+	std::cout << "Dog Copy Constructor Called" << std::endl;
 }
 
 Dog &Dog::operator=(const Dog &obj)
 {
-	if (this != &obj)
-	{
-		this->_type = obj.getType();
-		this->_dogBrain = obj.getBrain();
-	}
+	this->_type = obj.getType();
+	if (this->_dogBrain)
+		delete(this->_dogBrain);
+	this->_dogBrain = new Brain(*(obj.getBrain()));
 	return (*this);
 }
 
-Dog::~Dog()
+Dog::~Dog() 
 {
 	delete this->_dogBrain;
 	std::cout << "Dog Destructor called" << std::endl;
@@ -42,6 +43,14 @@ Dog::~Dog()
 void	Dog::makeSound( void ) const
 {
 	std::cout << "Dog: La filosofia es un silencioso dialogo del alma consigo misma en torno al ser. Digo... Guau Guau" << std::endl;
+}
+
+void	Dog::compareWith(Dog const &other)
+{
+	std::cout << "Dog compare" << std::endl;
+	std::cout << "My brain's heap address: " << static_cast<void*>(this->_dogBrain) << std::endl;
+	std::cout << "Other's heap address: " << static_cast<void*>(other.getBrain()) << std::endl;
+	std::cout << std::endl;
 }
 
 Brain *Dog::getBrain( void  ) const

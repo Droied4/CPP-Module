@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 13:53:56 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/04 01:29:36 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/04 17:21:52 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ Brain::Brain( void )
 	std::cout << "Brain Constructor Called" << std::endl;
 }
 
-Brain::Brain( const Brain &obj )
+Brain::Brain( Brain &obj )
 {
-	*this = obj;
+	std::string *obj_ideas = obj.getIdeas();
+	this->_ideas = new std::string[100];
+	for (size_t i = 0; i < 100; i++)
+		this->_ideas[i] = obj_ideas[i];
 }
 
 Brain &Brain::operator=( const Brain &obj )
