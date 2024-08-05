@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 18:45:10 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/04 21:49:47 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/05 19:12:54 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define AMATERIA_HPP
 
 # include <iostream>
-# include "Icharacter.hpp"
+# include "ICharacter.hpp"
 
 class AMateria
 {
@@ -36,7 +36,7 @@ class Ice : public AMateria
         private:
                 std::string _type;
         public:
-                Ice( std::string const &type );
+                Ice();
                 Ice( const Ice &obj );
                 Ice &operator=( const Ice &obj );
                 ~Ice();
@@ -51,7 +51,7 @@ class Cure : public AMateria
         private:
                 std::string _type;
         public:
-                Cure( std::string const &type );
+                Cure();
                 Cure( const Cure &obj );
                 Cure &operator=( const Cure &obj );
                 ~Cure();

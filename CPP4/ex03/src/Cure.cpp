@@ -6,13 +6,13 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:27:26 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/04 21:50:03 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/05 19:13:04 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
 
-Cure::Cure( std::string const &type ) : AMateria::AMateria("cure")
+Cure::Cure() : AMateria::AMateria("cure")
 {
         this->_type = AMateria::getType();
         std::cout << "Cure Constructor Called" << std::endl;

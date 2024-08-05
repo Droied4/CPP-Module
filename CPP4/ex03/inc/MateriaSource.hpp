@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 21:51:23 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/04 23:41:12 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/05 19:11:16 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class MateriaSource : public IMateriaSource
 {
 	private:
-		AMateria	_inventory[4];
+		AMateria	*_inventory[4];
 	public:
 		MateriaSource();
 		MateriaSource(MateriaSource const & ref);

@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 19:08:45 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/04 20:27:59 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/05 19:14:58 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ AMateria::AMateria( const AMateria &obj )
 	*this = obj;
 }
 
-AMateria &Amateria::operator=( const AMateria &obj )
+AMateria &AMateria::operator=( const AMateria &obj )
 {
 	if (this != &obj)
 		this->_type = obj.getType();
@@ -42,5 +42,5 @@ std::string const &AMateria::getType( void ) const
 
 void	use(ICharacter &target)
 {
-	std::cout << "* Nothing happen to " << target << " *" << std::endl;
+	std::cout << "* Nothing happen to " << target.getName() << " *" << std::endl;
 }
