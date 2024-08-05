@@ -6,14 +6,14 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:26:38 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/04 21:48:21 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/05 19:12:37 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
 #include "ICharacter.hpp"
 
-Ice::Ice( std::string const &type ) : AMateria::AMateria("ice")
+Ice::Ice() : AMateria::AMateria("ice")
 {
         this->_type = AMateria::getType();
         std::cout << "Ice Constructor Called" << std::endl;

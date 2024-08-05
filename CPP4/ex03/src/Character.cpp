@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:00:17 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/04 23:39:35 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/05 19:10:01 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ std::string Character::getName( void ) const
 	return (this->_name);
 }
 
-AMateria Character::getInventory( int idx ) const
+AMateria Character::getInventory( void ) const
 {
-	return (this->_inventory[idx]);
+	return (this->_inventory);
 }
 
 void	Character::equip( AMateria *m )
