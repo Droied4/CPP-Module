@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:27:26 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/05 19:13:04 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/06 15:55:09 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ Cure *Cure::clone ( void ) const
 	return (obj);
 }
 
-void    use(ICharacter &target)
+void    Cure::use(ICharacter &target)
 {
         std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }

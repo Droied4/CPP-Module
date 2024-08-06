@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:00:17 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/05 19:10:01 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/06 15:59:04 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Character::Character( std::string name )
 	std::cout << "Character Constructor Called" << std::endl;
 }
 
-Character::Character( Const Character &obj )
+Character::Character( const Character &obj )
 {
 	for (size_t i = 0; i < 4; i++)
 	{
@@ -51,14 +51,14 @@ Character::~Character()
 	std::cout << "Character Destructor Called" << std::endl;
 }
 
-std::string Character::getName( void ) const
+std::string const &Character::getName( void ) const
 {
 	return (this->_name);
 }
 
-AMateria Character::getInventory( void ) const
+AMateria *Character::getInventory( int idx ) const
 {
-	return (this->_inventory);
+	return (this->_inventory[idx]);
 }
 
 void	Character::equip( AMateria *m )
@@ -72,7 +72,7 @@ void	Character::equip( AMateria *m )
 	{
 		if (this->_inventory[i] == 0)
 		{
-			this->_inventory[i] = *m;
+			this->_inventory[i] = m;
 			std::cout << this->_name << " equiped " << m->getType() << " in slot " << i << std::endl;
 			return ;
 		}
@@ -84,8 +84,8 @@ void Character::unequip ( int idx )
 {
 	if (idx >= 0 && idx < 4 && this->_inventory[idx])
 	{
-		this->_inventory[idx] = 0;
 		std::cout << this->_name << " unequiped " << this->_inventory[idx]->getType() << std::endl;
+		this->_inventory[idx] = 0;
 		return ;
 	}
 	std::cout << "You cannot unequipe in the position " << idx << std::endl;
@@ -95,7 +95,8 @@ void Character::use ( int idx, ICharacter &target )
 {
 	if (idx >= 0 && idx < 4 && this->_inventory[idx])
 	{
-		std::cout << this->_name << this->_inventory[idx]->use(target) << std::endl;
+		std::cout << this->_name; 
+		this->_inventory[idx]->use(target);
 		return ;
 	}
 	std::cout << "Nothing to use" << std::endl;

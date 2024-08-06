@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 23:43:09 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/05 19:15:30 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/06 14:41:12 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ MateriaSource::MateriaSource(const MateriaSource &obj)
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &obj)
 {
-	if (this != &obj)
-		this->_inventory = obj->_inventory;
+	for (size_t i = 0; i < 4; i++) 
+	{
+		if (this != &obj)
+			this->_inventory[i] = obj._inventory[i];
+	}
 	return (*this);
 }
 
@@ -50,7 +53,7 @@ void	MateriaSource::learnMateria(AMateria *m)
 	std::cout << "Materia Source can't learn more materias" << std::endl;
 }
 
-AMateria *createMateria(std::string const &type)
+AMateria *MateriaSource::createMateria(std::string const &type)
 {
 	for (size_t i = 0; i < 4; i++) 
 	{

@@ -6,7 +6,7 @@
 /*   By: deordone <deordone@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 18:45:10 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/06 15:54:19 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/06 15:18:42 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ class Ice : public AMateria
                 Ice &operator=( const Ice &obj );
                 ~Ice();
 
+                std::string const &getType() const;
                 Ice *clone() const;
                 void use(ICharacter &target);
 };
@@ -57,6 +58,7 @@ class Cure : public AMateria
                 Cure &operator=( const Cure &obj );
                 ~Cure();
 
+                std::string const &getType() const;
                 Cure *clone() const;
                 void use(ICharacter &target);
 };
