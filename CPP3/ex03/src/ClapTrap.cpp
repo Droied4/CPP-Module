@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:29:15 by droied            #+#    #+#             */
-/*   Updated: 2024/08/07 11:05:05 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:43:59 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 ClapTrap::ClapTrap()
 {
-	this->_name = "Unamed";
+	this->_name = "Unamed";	
+
+	this->_hitPoints = 10;
+	this->_energyPoints = 10;
+	this->_attackDamage = 0;
 }
 
 ClapTrap::ClapTrap(std::string name )
