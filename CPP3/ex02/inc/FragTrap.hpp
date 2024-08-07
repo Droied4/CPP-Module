@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 23:29:30 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/07 09:42:38 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:27:53 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 class FragTrap : public ClapTrap
 {
 	public:
+		FragTrap();
 		FragTrap( std::string name );
 		FragTrap( const FragTrap &obj );
 		FragTrap &operator=( const FragTrap &obj );

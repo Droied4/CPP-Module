@@ -6,11 +6,19 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 22:51:49 by deordone          #+#    #+#             */
-/*   Updated: 2024/08/07 09:45:32 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:26:33 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
+
+ScavTrap::ScavTrap()
+{
+	this->_name = "Unamed ScavTrap";
+	this->_hitPoints = 100;
+	this->_energyPoints = 50;
+	this->_attackDamage = 20;
+}
 
 ScavTrap::ScavTrap ( std::string name ) : ClapTrap(name)
 {
