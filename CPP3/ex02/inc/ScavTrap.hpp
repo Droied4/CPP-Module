@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 22:47:27 by deordone          #+#    #+#             */
-/*   Updated: 2024/07/20 23:19:06 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/07 09:41:03 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 
 class ScavTrap : public ClapTrap
 {
-	private:
-		ScavTrap();
 	public:
 		ScavTrap( std::string name );
+		ScavTrap( const ScavTrap &obj );
+		ScavTrap &operator=( const ScavTrap &obj );
 		~ScavTrap();
 
 		void	attack( std::string const &target );

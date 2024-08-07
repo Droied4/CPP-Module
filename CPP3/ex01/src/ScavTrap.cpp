@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 22:51:49 by deordone          #+#    #+#             */
-/*   Updated: 2024/07/21 00:40:18 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/07 09:45:32 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@ ScavTrap::ScavTrap ( std::string name ) : ClapTrap(name)
 	this->_attackDamage = 20;
 
 	std::cout << "ScavTrap " << this->_name << " Constructor Called" << std::endl;
+}
+
+ScavTrap::ScavTrap(const ScavTrap &obj) : ClapTrap(obj)
+{
+	*this = obj;
+}
+
+ScavTrap	&ScavTrap::operator=(const ScavTrap &obj)
+{
+	if (this != &obj)
+		this->_name = obj.getName();
+	return (*this);
 }
 
 ScavTrap::~ScavTrap () 

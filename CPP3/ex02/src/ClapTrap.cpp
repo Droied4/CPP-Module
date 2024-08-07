@@ -6,11 +6,16 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:29:15 by droied            #+#    #+#             */
-/*   Updated: 2024/07/20 23:40:33 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:22:00 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+
+ClapTrap::ClapTrap()
+{
+	this->_name = "Unamed";
+}
 
 ClapTrap::ClapTrap(std::string name )
 {

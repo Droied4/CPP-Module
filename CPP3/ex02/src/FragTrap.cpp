@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 23:32:02 by deordone          #+#    #+#             */
-/*   Updated: 2024/07/20 23:46:28 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/07 09:45:00 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@ FragTrap::FragTrap( std::string name ) : ClapTrap(name)
 	this->_attackDamage = 30;
 	
 	std::cout << "FragTrap " << this->_name << " Constructor called" << std::endl;
+}
+
+FragTrap::FragTrap(const FragTrap &obj) : ClapTrap(obj)
+{
+	*this = obj;
+}
+
+FragTrap	&FragTrap::operator=(const FragTrap &obj)
+{
+	if (this != &obj)
+		this->_name = obj.getName();
+	return (*this);
 }
 
 FragTrap::~FragTrap()

@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:13:32 by deordone          #+#    #+#             */
-/*   Updated: 2024/07/20 23:27:04 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/06 17:14:14 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int main ( void )
 {
 	ClapTrap Pika("Pikachu");
 	ScavTrap Squirt("Squirtle");
+	ScavTrap si(Squirt);
 	
 	Pika.attack("Squirtle");
 	Squirt.takeDamage(0);

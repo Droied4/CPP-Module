@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 23:29:30 by deordone          #+#    #+#             */
-/*   Updated: 2024/07/21 00:23:58 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:18:38 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 
 class FragTrap : virtual public ClapTrap
 {
-	private:
-		FragTrap();
 	public:
+		FragTrap();
 		FragTrap( std::string name );
+		FragTrap( const FragTrap &obj );
+		FragTrap &operator=( const FragTrap &obj );
 		~FragTrap();
 
 		void	highFivesGuys( void );

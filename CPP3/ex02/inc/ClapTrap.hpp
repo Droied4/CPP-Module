@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:21:39 by droied            #+#    #+#             */
-/*   Updated: 2024/07/20 23:20:12 by deordone         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:20:31 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ class ClapTrap
 		unsigned int	_energyPoints;
 		unsigned int	_attackDamage;
 
-		ClapTrap();
 	public:
+		ClapTrap();
 		ClapTrap( std::string name );
 		ClapTrap( const ClapTrap &obj );
 		ClapTrap &operator=( const ClapTrap &obj );
