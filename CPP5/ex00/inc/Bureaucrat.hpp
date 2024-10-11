@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 19:41:35 by droied            #+#    #+#             */
-/*   Updated: 2024/10/09 20:31:28 by droied           ###   ########.fr       */
+/*   Updated: 2024/10/11 15:01:23 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 class Bureaucrat {
 private:
-	const std::string 	m_name;
+	std::string 	m_name;
 	short int			m_grade;
 public:
 	Bureaucrat();
@@ -30,8 +30,10 @@ public:
 	short int	getGrade() const;
 	void		setGrade(short int t_grade);
 
-	void		increaseGrade(Bureaucrat &t_bureaucrat, unsigned char t_increase);
-	void		decreaseGrade(Bureaucrat &t_bureaucrat, unsigned char t_decrease);
+	void	increaseGrade(short int t_increase);
+	void	decreaseGrade(short int t_decrease);
 };
+
+std::ostream &operator<<( std::ostream &out, Bureaucrat const &t_obj);
 
 #endif // BUREAUCRAT_HPP
