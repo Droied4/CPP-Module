@@ -25,8 +25,8 @@ SOURCES_PATH    = ./src
 INCLUDE_PATH	= ./inc
 OBJECTS_PATH    = ./obj
 
-HEADER = $(INCLUDE_PATH)/Bureaucrat.hpp 
-SOURCES = main.cpp Bureaucrat.cpp
+HEADER = $(INCLUDE_PATH)/Bureaucrat.hpp $(INCLUDE_PATH)/Form.hpp
+SOURCES = main.cpp Bureaucrat.cpp Form.cpp
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               OBJECTS                                        #
