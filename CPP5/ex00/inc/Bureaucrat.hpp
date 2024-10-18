@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 19:41:35 by droied            #+#    #+#             */
-/*   Updated: 2024/10/11 15:01:23 by deordone         ###   ########.fr       */
+/*   Updated: 2024/10/18 12:56:06 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 class Bureaucrat {
 private:
-	std::string 	m_name;
+	const std::string 	m_name;
 	short int			m_grade;
 public:
 	Bureaucrat();
@@ -32,6 +32,17 @@ public:
 
 	void	increaseGrade(short int t_increase);
 	void	decreaseGrade(short int t_decrease);
+
+	class GradeTooHighException : public std::exception 
+	{
+		public:
+			virtual const char *	what() const throw();
+	};
+	class GradeTooLowException : public std::exception 
+	{
+		public:
+			virtual const char *	what() const throw();
+	};
 };
 
 std::ostream &operator<<( std::ostream &out, Bureaucrat const &t_obj);
