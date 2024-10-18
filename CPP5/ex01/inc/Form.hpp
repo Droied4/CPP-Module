@@ -14,6 +14,9 @@
 # define FORM_HPP
 
 # include <iostream>
+# include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form 
 {
@@ -33,6 +36,20 @@ class Form
 		bool				getSigned() const;
 		short int		getToSign() const;
 		short int		getToExecute() const;
+
+		void	beSigned(Bureaucrat &t_bureaucrat);
+
+		class GradeTooHighException : public std::exception 
+		{
+			public:
+				virtual const char *	what() const throw();
+		};
+		class GradeTooLowException : public std::exception 
+		{
+			public:
+				virtual const char *	what() const throw();
+		};
+
 };
 
 std::ostream &operator<<(std::ostream &out, const Form &t_obj);
