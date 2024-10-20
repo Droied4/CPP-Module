@@ -25,7 +25,7 @@ int main (void)
 		}
 		catch(std::exception & e)
 		{
-			std::cout << "FAIL ❌\n";
+			std::cout << "FAIL ❌\n" << e.what() << "\n";
 		}
 	}
 	{
@@ -46,7 +46,7 @@ int main (void)
 		}
 		catch(std::exception & e)
 		{
-			std::cout << "FAIL ❌\n";
+			std::cout << "FAIL ❌\n" << e.what() << "\n";
 		}
 	}
 	return (0);

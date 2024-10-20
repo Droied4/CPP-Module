@@ -33,11 +33,11 @@ class Form
 		~Form();
 
 		std::string 	getName() const;
-		bool				getSigned() const;
+		bool			getSigned() const;
 		short int		getToSign() const;
 		short int		getToExecute() const;
 
-		void	beSigned(Bureaucrat &t_bureaucrat);
+		bool	beSigned(Bureaucrat &t_bureaucrat);
 
 		class GradeTooHighException : public std::exception 
 		{

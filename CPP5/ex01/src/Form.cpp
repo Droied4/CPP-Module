@@ -15,7 +15,7 @@
 Form::Form() : m_name("default"), m_to_sign(42), m_to_execute(42)
 {
 	this->m_signed = false;
-	std::cout << "Form Created\n";
+	std::cout << "Form " << this->m_name << " Created\n";
 }
 
 Form::Form(std::string t_name, short int t_to_sign,
@@ -70,12 +70,16 @@ short int Form::getToExecute(void) const
 	return (this->m_to_execute);
 }
 
-void	Form::beSigned(Bureaucrat &t_bureaucrat)
+bool	Form::beSigned(Bureaucrat &t_bureaucrat)
 {
 	if (!this->m_signed && t_bureaucrat.getGrade() <= this->m_to_sign)
+	{
 		this->m_signed = true;
+		return (true);
+	}
 	else
 		throw Form::GradeTooLowException();
+	return (false);
 }
 
 const char *	Form::GradeTooHighException::what() const throw() 
