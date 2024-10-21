@@ -12,6 +12,8 @@
 
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main (void)
 {
@@ -38,7 +40,15 @@ int main (void)
 	{
 		try 
 		{
-			std::cout << "\n \033[32m TEST 02 \033[0m \n";
+			std::cout << "\n \033[32m TEST [RobotomyRequestForm] \033[0m \n";
+			Bureaucrat bur("Jonathan", 1);
+			RobotomyRequestForm rrf("Deivid");
+			bur.signForm(rrf);
+			bur.executeForm(rrf);
+			Bureaucrat bur2("Javier", 70);
+			RobotomyRequestForm rrf2("Deivid");
+			bur2.signForm(rrf2);
+			bur2.executeForm(rrf2);
 		}
 		catch(std::exception & e)
 		{
@@ -46,5 +56,25 @@ int main (void)
 		}
 		std::cout << "\n------------------\n";
 	}
+	{
+		try 
+		{
+			std::cout << "\n \033[32m TEST [PresidentialPardonForm] \033[0m \n";
+			Bureaucrat bur("Jaimito", 1);
+			PresidentialPardonForm ppf("Deivid");
+			bur.signForm(ppf);
+			bur.executeForm(ppf);
+			Bureaucrat bur2("ELver", 13);
+			PresidentialPardonForm ppf2("Deivid");
+			bur2.signForm(ppf2);
+			bur2.executeForm(ppf2);
+		}
+		catch(std::exception & e)
+		{
+			std::cout << "FAIL ❌\n" << e.what() << "\n";
+		}
+		std::cout << "\n------------------\n";
+	}
+
 	return (0);
 }
