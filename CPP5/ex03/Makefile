@@ -6,14 +6,14 @@
 #    By: droied <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 02:04:22 by droied            #+#    #+#              #
-#    Updated: 2024/10/09 19:31:34 by droied           ###   ########.fr        #
+#    Updated: 2024/10/09 20:32:43 by droied           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               CPP5                                        #
 # ╚══════════════════════════════════════════════════════════════════════════╝ #  
-NAME        = siu 
+NAME        = Bureaucrat 
 CC 			= c++
 CFLAGS 		= -Wall -Wextra -Werror -std=c++98 -I $(INCLUDE_PATH)
 
@@ -25,8 +25,8 @@ SOURCES_PATH    = ./src
 INCLUDE_PATH	= ./inc
 OBJECTS_PATH    = ./obj
 
-HEADER = 
-SOURCES = 
+HEADER = $(INCLUDE_PATH)/Bureaucrat.hpp $(INCLUDE_PATH)/AForm.hpp $(INCLUDE_PATH)/PresidentialPardonForm.hpp  $(INCLUDE_PATH)/RobotomyRequestForm.hpp  $(INCLUDE_PATH)/ShrubberyCreationForm.hpp $(INCLUDE_PATH)/Intern.hpp
+SOURCES = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               OBJECTS                                        #
@@ -57,10 +57,10 @@ $(NAME): $(OBJECTS)
 	@printf "$(CYAN)$@ Compiled$(NC)\n"
 	@$(CC) $(CFLAGS) $^ -o $(NAME)
 
-$(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.cpp $(HEADER) Makefile
+$(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.cpp Makefile $(HEADER)
 	@printf "$(CYAN)Compiling $@$(NC)\n";
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@ 
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@printf "$(CYAN)Cleaning objects and libraries$(NC)\n";
