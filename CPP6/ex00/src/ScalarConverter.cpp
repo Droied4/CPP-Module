@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:24:52 by droied            #+#    #+#             */
-/*   Updated: 2024/10/24 13:06:05 by droied           ###   ########.fr       */
+/*   Updated: 2024/10/24 13:17:12 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ ScalarConverter::~ScalarConverter()
 void convertToChar(std::string t_type)
 {
 	char c = std::atoi(t_type.c_str());
-	if (t_type.size() > 1)
+	/*if (t_type.size() > 1)
 	{
 		std::cout << "char: impossible\n";
 		return ;
-	}	
-	else if (t_type.size() == 1 && c <= 0)
+	}*/	
+	if (t_type.size() == 1 && c <= 0)
 	{
 		std::cout << "char: '" << t_type.c_str()[0] << "'\n";
 		return ;
@@ -52,11 +52,11 @@ void convertToChar(std::string t_type)
 void convertToInt(std::string t_type)
 {
 	int i = std::atoi(t_type.c_str());
-	if (t_type.size() > 1)
+/*	if (t_type.size() > 1 && t_type.find("0123456789") != std::string::npos)
 	{
 		std::cout << "int: impossible\n";
 		return ;
-	}	
+	}	*/
 	if (t_type.size() == 1 && i <= 0)
 	{
 		std::cout << "int: " << static_cast<int>(t_type.c_str()[0]) << "\n";
