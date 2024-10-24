@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:24:52 by droied            #+#    #+#             */
-/*   Updated: 2024/10/24 14:25:27 by droied           ###   ########.fr       */
+/*   Updated: 2024/10/24 18:18:36 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ void convertToChar(std::string t_type)
 		std::cout << "char: '" << t_type.c_str()[0] << "'\n";
 		return ;
 	}
+	if (!t_type.compare("nan") || !t_type.compare("inf") || !t_type.compare("-inf"))
+	{
+		std::cout << "char : impossible\n";
+		return ;
+	}
 	if (c >= 32 && c <= 126)
 		std::cout << "char: '" << c << "'\n";
 	else
@@ -46,15 +51,15 @@ void convertToChar(std::string t_type)
 
 void convertToInt(std::string t_type)
 {
-	int i = std::atoi(t_type.c_str());
-/*	if (t_type.size() > 1 && t_type.find("0123456789") != std::string::npos)
-	{
-		std::cout << "int: impossible\n";
-		return ;
-	}	*/ 
-	if (t_type.size() == 1 && i < 0)
+	int i = std::atoi(t_type.c_str());	
+	if (t_type.size() == 1 && i <= 0 && static_cast<int>(t_type.c_str()[0]) != '0')
 	{
 		std::cout << "int: " << static_cast<int>(t_type.c_str()[0]) << "\n";
+		return ;
+	}
+	if (!t_type.compare("nan"))
+	{
+		std::cout << "int : impossible\n";
 		return ;
 	}
 	std::cout << "int: " << i << "\n";
@@ -63,7 +68,7 @@ void convertToInt(std::string t_type)
 void convertToFloat(std::string t_type)
 {
 	float f = std::atof(t_type.c_str());
-	if (t_type.size() == 1 && f < 0)
+	if (t_type.size() == 1 && f <= 0 && static_cast<float>(t_type.c_str()[0]) != '0')
 	{
 		std::cout << std::fixed << std::setprecision(1) << "float: " << static_cast<float>(t_type.c_str()[0]) << "f\n";
 		return ;
@@ -74,7 +79,7 @@ void convertToFloat(std::string t_type)
 void convertToDouble(std::string t_type)
 {
 	double d = std::atof(t_type.c_str());
-	if (t_type.size() == 1 && d < 0)
+	if (t_type.size() == 1 && d <= 0 && static_cast<double>(t_type.c_str()[0]) != '0')
 	{
 		std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double>(t_type.c_str()[0]) << "\n";
 		return ;
