@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 15:15:28 by deordone          #+#    #+#             */
-/*   Updated: 2024/10/21 10:43:17 by deordone         ###   ########.fr       */
+/*   Updated: 2024/10/24 09:06:34 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class AForm
 		AForm(std::string t_name, short int t_to_sign, short int t_to_execute);
 		AForm(const AForm &t_obj);
 		AForm &operator=(const AForm &t_obj);
-		~AForm();
+		virtual ~AForm();
 
 		std::string 	getName() const;
 		bool			getSigned() const;
