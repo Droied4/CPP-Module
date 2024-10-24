@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:14:35 by droied            #+#    #+#             */
-/*   Updated: 2024/10/24 12:25:07 by droied           ###   ########.fr       */
+/*   Updated: 2024/10/24 13:50:18 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <iostream>
 # include <string>
 # include <cstdlib>
+# include <iomanip>
 
 class ScalarConverter
 {

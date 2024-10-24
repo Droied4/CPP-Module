@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:24:52 by droied            #+#    #+#             */
-/*   Updated: 2024/10/24 13:17:12 by droied           ###   ########.fr       */
+/*   Updated: 2024/10/24 13:56:58 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void convertToChar(std::string t_type)
 		std::cout << "char: impossible\n";
 		return ;
 	}*/	
-	if (t_type.size() == 1 && c <= 0)
+	if (t_type.size() == 1 && c < 0)
 	{
 		std::cout << "char: '" << t_type.c_str()[0] << "'\n";
 		return ;
@@ -56,8 +56,8 @@ void convertToInt(std::string t_type)
 	{
 		std::cout << "int: impossible\n";
 		return ;
-	}	*/
-	if (t_type.size() == 1 && i <= 0)
+	}	*/ 
+	if (t_type.size() == 1 && i < 0)
 	{
 		std::cout << "int: " << static_cast<int>(t_type.c_str()[0]) << "\n";
 		return ;
@@ -67,12 +67,24 @@ void convertToInt(std::string t_type)
 
 void convertToFloat(std::string t_type)
 {
-	std::cout << "float: " << t_type << "\n";
+	float f = std::atof(t_type.c_str());
+	if (t_type.size() == 1 && f < 0)
+	{
+		std::cout << std::fixed << std::setprecision(1) << "float: " << static_cast<float>(t_type.c_str()[0]) << "f\n";
+		return ;
+	}
+	std::cout << std::fixed << std::setprecision(1) << "float: " << f << "f\n";
 }
 
 void convertToDouble(std::string t_type)
 {
-	std::cout << "double: " << t_type << "\n";
+	double d = std::atol(t_type.c_str());
+	if (t_type.size() == 1 && d < 0)
+	{
+		std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double>(t_type.c_str()[0]) << "\n";
+		return ;
+	}
+	std::cout << "double: " << d << "\n";
 }
 
 void ScalarConverter::convert(std::string t_type)
