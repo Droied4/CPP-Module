@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:24:52 by droied            #+#    #+#             */
-/*   Updated: 2024/10/24 13:56:58 by droied           ###   ########.fr       */
+/*   Updated: 2024/10/24 14:25:27 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,7 @@ ScalarConverter::~ScalarConverter()
 void convertToChar(std::string t_type)
 {
 	char c = std::atoi(t_type.c_str());
-	/*if (t_type.size() > 1)
-	{
-		std::cout << "char: impossible\n";
-		return ;
-	}*/	
-	if (t_type.size() == 1 && c < 0)
+	if (t_type.size() == 1 && c <= 0 && t_type.c_str()[0] != '0')
 	{
 		std::cout << "char: '" << t_type.c_str()[0] << "'\n";
 		return ;
@@ -78,7 +73,7 @@ void convertToFloat(std::string t_type)
 
 void convertToDouble(std::string t_type)
 {
-	double d = std::atol(t_type.c_str());
+	double d = std::atof(t_type.c_str());
 	if (t_type.size() == 1 && d < 0)
 	{
 		std::cout << std::fixed << std::setprecision(1) << "double: " << static_cast<double>(t_type.c_str()[0]) << "\n";
