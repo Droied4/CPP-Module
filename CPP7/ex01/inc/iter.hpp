@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 21:45:50 by droied            #+#    #+#             */
-/*   Updated: 2024/10/25 22:07:26 by droied           ###   ########.fr       */
+/*   Updated: 2024/10/25 22:23:15 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 # include <iostream>
 
-// template <typename T> void swap(T &a, T &b);
-// template <typename T> T min(T a, T b);
-// template <typename T> T max(T a, T b);
+template <typename T> void iter(T *address, unsigned int lenght, void(*f)(T &var));
+template <typename T> void print(T  &a);
 
 #endif //ITER_HPP
