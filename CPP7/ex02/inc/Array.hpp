@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 11:45:07 by droied            #+#    #+#             */
-/*   Updated: 2024/10/26 11:57:52 by droied           ###   ########.fr       */
+/*   Updated: 2024/10/27 07:54:21 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ template<typename T>
 class Array
 {
 	private:
-		T	m_array[];
+		T				m_array[];
+		unsigned int	m_size;
 	public:
 		Array();
 		Array(unsigned int n);
