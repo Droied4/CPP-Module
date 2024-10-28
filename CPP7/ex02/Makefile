@@ -6,7 +6,7 @@
 #    By: droied <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 02:04:22 by droied            #+#    #+#              #
-#    Updated: 2024/10/26 11:44:37 by droied           ###   ########.fr        #
+#    Updated: 2024/10/28 17:37:35 by deordone         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 
 NAME        = Iter
 CC 			= c++
-CFLAGS 		= -Wall -Wextra -Werror -std=c++98 -I $(INCLUDE_PATH)
+CFLAGS 		= -Wall -Wextra -Werror -std=c++98 -I $(INCLUDE_PATH) -MMD
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               SOURCES                                        #
@@ -26,8 +26,8 @@ SOURCES_PATH    = ./src
 INCLUDE_PATH	= ./inc
 OBJECTS_PATH    = ./obj
 
-HEADER = $(INCLUDE_PATH)/Array.hpp $(INCLUDE_PATH)/Array.tpp
-SOURCES = main.cpp 
+HEADER = $(INCLUDE_PATH)/Array.hpp
+SOURCES = main.cpp #Array.tpp
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               OBJECTS                                        #
@@ -102,13 +102,6 @@ header:
 	@printf "  $(RED)	   ╚══════════════════════════════════════════════════════════════════════════╝$(NC)\n"
 	@echo
  
-help: 
-	@printf "\n";  
-	@printf "	▂▃▅▆█▆▅▃▂ Help ▂▃▅▆█▆▅▃▂\n";
-	@printf "$(BLUE)► FATAL: ThreadSanitizer: unexpected memory mapping 0x60405db08000-0x60405db09000\n";
-	@printf "		  sudo sysctl vm.mmap_rnd_bits=28 $(NC) \n";
-	@printf "\n"; 
-
 author: 
 	@printf "\n";
 	@printf "$(CYAN)	 	         	Created by 𝗗𝗿𝗼𝗶e𝗱 -大卫\n";

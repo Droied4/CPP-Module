@@ -6,14 +6,15 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 12:03:20 by droied            #+#    #+#             */
-/*   Updated: 2024/10/26 12:03:38 by droied           ###   ########.fr       */
+/*   Updated: 2024/10/28 17:38:42 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Array.hpp"
+#include "Array.tpp"
 
 int main (void)
 {
-
+	Array<int> my(42);
+	std::cout << my.size() << "\n";
 	return (0);
 }
