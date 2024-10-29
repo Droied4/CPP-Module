@@ -6,7 +6,7 @@
 #    By: droied <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 02:04:22 by droied            #+#    #+#              #
-#    Updated: 2024/10/28 17:37:35 by deordone         ###   ########.fr        #
+#    Updated: 2024/10/29 18:02:41 by deordone         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ INCLUDE_PATH	= ./inc
 OBJECTS_PATH    = ./obj
 
 HEADER = $(INCLUDE_PATH)/Array.hpp
-SOURCES = main.cpp #Array.tpp
+SOURCES = main.cpp
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               OBJECTS                                        #
