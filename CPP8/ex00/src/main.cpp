@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:14:57 by deordone          #+#    #+#             */
-/*   Updated: 2024/10/30 15:21:26 by deordone         ###   ########.fr       */
+/*   Updated: 2024/10/30 17:02:08 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,36 @@ int main(void)
 	{
 		std::cout << "Vector Test\n";
 		std::vector<int> vec;
-		easyfind(vec, 42);
-		vec.push_back(42);
-		easyfind(vec, 42);
-		vec.push_back(24);
-		easyfind(vec, 42);
+		try
+		{
+			easyfind(vec, 42);
+			vec.push_back(42);
+			easyfind(vec, 42);
+			vec.push_back(24);
+			easyfind(vec, 42);
+			std::cout << "Test passed :D\n";
+		}
+		catch (std::exception &e) 
+		{
+			std::cout << e.what() << "\n";
+		}
 	}
-/*	{
+	{
 		std::cout << "List Test\n";
-		std::list<int> lst{42} 
-		std::list<int> lst2{42} 
-		//find
-	    flst.assign({ 42 });
-		//find
-		flst.push_back(24);
-		//find
-	}*/
+		std::list<int> lst;
+		try
+		{
+			easyfind(lst, 42);
+			lst.push_back(42);
+			easyfind(lst, 42);
+			lst.push_back(24);
+			easyfind(lst, 42);
+			std::cout << "Test passed :D\n";
+		}
+		catch (std::exception &e)
+		{
+			std::cout << e.what() << "\n";
+		}
+	}
 	return (0);
 }
