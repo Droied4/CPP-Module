@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 11:22:26 by deordone          #+#    #+#             */
-/*   Updated: 2024/10/29 18:49:31 by deordone         ###   ########.fr       */
+/*   Updated: 2024/10/30 09:56:02 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,11 @@ T &Array<T>::operator[](unsigned int idx)
 template<typename T>
 Array<T> &Array<T>::operator=(const Array<T> &t_obj)
 {
+	std::cout << "Copy assignment Array\n";
 	if (this != &t_obj)
 	{
-		//delete[] (this->m_array)
+		delete[] (this->m_array);
+		this->m_size = t_obj.size();
 		this->m_array = new T[t_obj.size()];
 		for (unsigned int i = 0; i < t_obj.size(); i++)
 			this->m_array[i] = t_obj.m_array[i];

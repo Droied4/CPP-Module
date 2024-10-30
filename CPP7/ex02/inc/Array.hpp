@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 11:45:07 by droied            #+#    #+#             */
-/*   Updated: 2024/10/29 18:19:48 by deordone         ###   ########.fr       */
+/*   Updated: 2024/10/30 09:57:20 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,10 @@ class Array
 		Array(const Array &t_obj);
 		~Array();
 		
-		Array 	&operator=(const Array &t_obj);
-		T		operator[](unsigned int n) const;
-		T 		&operator[](unsigned int n);
-		unsigned int size() const; //• returns the number of elements in the array
-	/*	class OutBounds : public std::exception 
-		{
-			public:
-				virtual const char *	what() const throw();
-		};*/
+		Array 			&operator=(const Array &t_obj);
+		T				operator[](unsigned int n) const;
+		T 				&operator[](unsigned int n);
+		unsigned int 	size() const;
 };
 
 #endif //ARRAY_HPP

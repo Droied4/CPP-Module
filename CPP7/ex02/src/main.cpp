@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 12:03:20 by droied            #+#    #+#             */
-/*   Updated: 2024/10/29 18:48:26 by deordone         ###   ########.fr       */
+/*   Updated: 2024/10/30 10:01:50 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,13 @@ int main (void)
 		}
 		my[1] = 2;
 		yours = my;	
-		std::cout << "my -> " << &my[0] << "\n";
-		std::cout << "yours -> " << &yours[0] << "\n";
+		std::cout << "my -> " << &my << "\n";
+		std::cout << "yours -> " << &yours << "\n";
+		std::cout << "yours -> " << yours[0] << "\n";
+		std::cout << "yours -> " << yours[1] << "\n";
+		int n;
+		n = my[1];
+		std::cout << n << "\n";
 	}
 	return (0);
 }

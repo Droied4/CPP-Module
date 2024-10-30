@@ -6,7 +6,7 @@
 #    By: droied <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 02:04:22 by droied            #+#    #+#              #
-#    Updated: 2024/10/29 18:02:41 by deordone         ###   ########.fr        #
+#    Updated: 2024/10/30 09:52:43 by deordone         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ fclean : clean
 	@printf "$(CYAN)Cleaning objects, libraries and executable$(NC)\n";
 	@rm -rf $(NAME)
 
-re: all clean fclean 
+re: fclean all 
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               MY RULES                                          #
