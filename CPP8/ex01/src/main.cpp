@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 17:14:34 by deordone          #+#    #+#             */
-/*   Updated: 2024/11/05 11:18:53 by deordone         ###   ########.fr       */
+/*   Updated: 2024/11/05 11:40:55 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,14 @@ int main(void)
 			std::cout << e.what() << "\n";
 		}
 		std::cout << "shortest -> " << vec.shortestSpan() << "\n";
+	}
+	{
+		std::cout << "\n[MANY NUMBERS TEST]\n";
+		Span vec2(5);
+
+		vec2.addManyNumbers();
+		std::cout << "longest -> " << vec2.longestSpan() << "\n";
+		std::cout << "shortest -> " << vec2.shortestSpan() << "\n";
 	}
 
 	return (0);

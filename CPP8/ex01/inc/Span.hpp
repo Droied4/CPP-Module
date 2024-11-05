@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 21:06:47 by droied            #+#    #+#             */
-/*   Updated: 2024/11/05 11:08:07 by deordone         ###   ########.fr       */
+/*   Updated: 2024/11/05 11:37:49 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ class Span
 		std::vector<unsigned int> 	getVec() const;
 		unsigned int 				getSize() const;
 		
+		
 		void addNumber(int t_n); 
+		void addManyNumbers();
 		unsigned int shortestSpan();
 		unsigned int longestSpan();
 };

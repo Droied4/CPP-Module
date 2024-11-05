@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 21:57:03 by droied            #+#    #+#             */
-/*   Updated: 2024/11/05 11:18:31 by deordone         ###   ########.fr       */
+/*   Updated: 2024/11/05 11:50:08 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ void Span::addNumber(int t_n)
 		m_vec.push_back(t_n);
 	else
 		throw std::overflow_error("Span is already full");
+}
+
+void Span::addManyNumbers()
+{
+	for(unsigned long i(0); i < m_size; i++)
+		this->m_vec.push_back(std::rand() % 90000);
 }
 
 unsigned int Span::shortestSpan()
