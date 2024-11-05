@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 21:06:47 by droied            #+#    #+#             */
-/*   Updated: 2024/11/03 17:35:33 by deordone         ###   ########.fr       */
+/*   Updated: 2024/11/05 11:08:07 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <iostream>
 # include <vector>
+# include <bits/stdc++.h>
+# include <limits>
 
 class Span 
 {
@@ -32,8 +34,8 @@ class Span
 		unsigned int 				getSize() const;
 		
 		void addNumber(int t_n); 
-		void shortestSpan();
-		void longestSpan();
+		unsigned int shortestSpan();
+		unsigned int longestSpan();
 };
 
 #endif //SPAN_HPP
