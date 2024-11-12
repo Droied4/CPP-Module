@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:18:01 by droied            #+#    #+#             */
-/*   Updated: 2024/11/12 11:36:51 by deordone         ###   ########.fr       */
+/*   Updated: 2024/11/12 20:10:40 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ int main (int ac, char *av[])
 	BitcoinExchange exchange;
 	if (parse(av, exchange))
 		return (1);
-	if (exchange.checkInfile())
-		return (1);
+	exchange.containData(exchange.getDqIn(), *exchange.getInfile());
+	exchange.printValue();
+	// if (exchange.checkInfile())
+		// return (1);
 	return (0);
 }

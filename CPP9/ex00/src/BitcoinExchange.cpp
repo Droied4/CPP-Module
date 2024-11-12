@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:25:22 by droied            #+#    #+#             */
-/*   Updated: 2024/11/12 11:37:49 by deordone         ###   ########.fr       */
+/*   Updated: 2024/11/12 20:26:31 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &t_obj) //FALT
 	return (*this);
 }
 
+std::fstream	*BitcoinExchange::getInfile() const
+{
+	return (this->m_infile);
+}
+
+const &std::deque<std::string>	BitcoinExchange::getDqIn() const
+{
+	return (this->m_dq_in);
+}
+
 void	BitcoinExchange::openFile(const char *t_name_file, std::fstream &t_file, std::ios_base::openmode t_mode)
 {
 	t_file.open(t_name_file, t_mode);
@@ -48,8 +58,19 @@ void	BitcoinExchange::setupFiles( std::fstream &t_infile, std::fstream &t_databs
 	this->m_database = &t_databse;
 }
 
+void BitcoinExchange::containData(std::deque<std::string> &dq, std::fstream t_file)
+{
+	std::string line;
+	while(getline(t_file, line)
+		dq.push_back(line);
+}
 
-//create this functions
+void	BitcoinExchange::printValue()
+{
+	for (std::deque<std::string>::iterator it(m_dq_in.begin()); it != m_dq_in.end(); it++)
+		std::cout << *it << "\n";
+}
+
 void	BitcoinExchange::checkInfile()
 {
 	try 
