@@ -6,7 +6,7 @@
 #   By: droied <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 02:04:22 by droied            #+#    #+#              #
-#    Updated: 2024/11/10 17:22:12 by droied           ###   ########.fr        #
+#    Updated: 2024/11/11 21:41:47 by droied           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ SOURCES_PATH    = ./src
 INCLUDE_PATH	= ./inc
 OBJECTS_PATH    = ./obj
 
-HEADER = $(INCLUDE_PATH)/.hpp
-SOURCES = main.cpp 
+HEADER = $(INCLUDE_PATH)/BitcoinExchange.hpp
+SOURCES = main.cpp BitcoinExchange.cpp
 
 # ╔══════════════════════════════════════════════════════════════════════════╗ #  
 #                               OBJECTS                                        #

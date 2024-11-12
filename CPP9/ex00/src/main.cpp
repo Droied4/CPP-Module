@@ -3,52 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 10:14:57 by deordone          #+#    #+#             */
-/*   Updated: 2024/10/30 17:02:08 by deordone         ###   ########.fr       */
+/*   Created: 2024/11/11 21:18:01 by droied            #+#    #+#             */
+/*   Updated: 2024/11/12 09:01:10 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "easyfind.tpp"
-#include <vector>
-#include <list>
+#include "BitcoinExchange.hpp"
 
-int main(void)
+int main (int ac, char *av[])
 {
+	if (ac != 2)
 	{
-		std::cout << "Vector Test\n";
-		std::vector<int> vec;
-		try
-		{
-			easyfind(vec, 42);
-			vec.push_back(42);
-			easyfind(vec, 42);
-			vec.push_back(24);
-			easyfind(vec, 42);
-			std::cout << "Test passed :D\n";
-		}
-		catch (std::exception &e) 
-		{
-			std::cout << e.what() << "\n";
-		}
+		std::cout << "Usage: insert one file\n";
+		return (1);
 	}
+	BitcoinExchange exchange;
+	std::fstream infile;
+	try
 	{
-		std::cout << "List Test\n";
-		std::list<int> lst;
-		try
-		{
-			easyfind(lst, 42);
-			lst.push_back(42);
-			easyfind(lst, 42);
-			lst.push_back(24);
-			easyfind(lst, 42);
-			std::cout << "Test passed :D\n";
-		}
-		catch (std::exception &e)
-		{
-			std::cout << e.what() << "\n";
-		}
+		exchange.openFile(av[1], infile, std::ios_base::in);
+		exchange.openFile(); guardar el archivo de la database
+		//hay base de datos ? continua ejecucion : throw::runtime_error("No database loaded please add one")
+	}
+	catch(std::exception &e)
+	{
+		std::cout << e.what() << "\n";
+		return(1);
 	}
 	return (0);
 }
