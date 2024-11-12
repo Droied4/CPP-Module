@@ -6,11 +6,29 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:18:01 by droied            #+#    #+#             */
-/*   Updated: 2024/11/12 09:01:10 by droied           ###   ########.fr       */
+/*   Updated: 2024/11/12 11:36:51 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+
+int parse(char *av[], BitcoinExchange &obj)
+{
+	std::fstream infile;
+	std::fstream database;
+	try
+	{
+		obj.openFile(av[1], infile, std::ios_base::in);
+		obj.openFile("src/data.csv", database, std::ios_base::in);
+	}
+	catch(std::exception &e)
+	{
+		std::cout << e.what() << "\n";
+		return(1);
+	}
+	obj.setupFiles(infile, database);
+	return (0);
+}
 
 int main (int ac, char *av[])
 {
@@ -20,17 +38,9 @@ int main (int ac, char *av[])
 		return (1);
 	}
 	BitcoinExchange exchange;
-	std::fstream infile;
-	try
-	{
-		exchange.openFile(av[1], infile, std::ios_base::in);
-		exchange.openFile(); guardar el archivo de la database
-		//hay base de datos ? continua ejecucion : throw::runtime_error("No database loaded please add one")
-	}
-	catch(std::exception &e)
-	{
-		std::cout << e.what() << "\n";
-		return(1);
-	}
+	if (parse(av, exchange))
+		return (1);
+	if (exchange.checkInfile())
+		return (1);
 	return (0);
 }
