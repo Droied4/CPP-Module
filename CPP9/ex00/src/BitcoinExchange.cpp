@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:25:22 by droied            #+#    #+#             */
-/*   Updated: 2024/11/14 20:38:05 by droied           ###   ########.fr       */
+/*   Updated: 2024/11/14 21:28:53 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,14 @@ void	BitcoinExchange::openReadfile(const char *t_name_file)
 void BitcoinExchange::containData()
 {
 	std::string line;
-	std::getline(m_infile, line); //lo cambie todo a ifstream pero creo que tambien puede funcionar con fstream
-								 //hay que probarlo, ahora mismo da segfault seguramente por el tema de referencias
-								 //y punteros.
-								 //no creo que sea por el tipo. igual segun chati es mejor usar ifstream si solo voy a leer
-								 //y pues tiene sentido en verdad
-	std::cout << line << "\n";
-	m_dq_in.push_back(line);
-	// while(getline(t_file, line))
-	// {
+	// std::getline(m_infile, line); 
+	// std::cout << line << "\n";
+	// m_dq_in.push_back(line);
+	while(getline(m_infile, line))
+	{
 	// std::cout << "aqui\n";
-	// dq.push_back(line);
-	// }
+		m_dq_in.push_back(line);
+	}
 }
 
 void	BitcoinExchange::printValue()
