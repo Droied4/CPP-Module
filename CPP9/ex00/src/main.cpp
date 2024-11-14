@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:18:01 by droied            #+#    #+#             */
-/*   Updated: 2024/11/12 20:10:40 by droied           ###   ########.fr       */
+/*   Updated: 2024/11/14 10:38:13 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int parse(char *av[], BitcoinExchange &obj)
 {
-	std::fstream infile;
-	std::fstream database;
+	std::ifstream infile;
+	std::ifstream database;
 	try
 	{
-		obj.openFile(av[1], infile, std::ios_base::in);
-		obj.openFile("src/data.csv", database, std::ios_base::in);
+		obj.openReadfile(av[1], infile);
+		obj.openReadfile("src/data.csv", database);
 	}
 	catch(std::exception &e)
 	{
@@ -40,7 +40,7 @@ int main (int ac, char *av[])
 	BitcoinExchange exchange;
 	if (parse(av, exchange))
 		return (1);
-	exchange.containData(exchange.getDqIn(), *exchange.getInfile());
+	exchange.containData(*exchange.getDqIn(), exchange.getInfile());
 	exchange.printValue();
 	// if (exchange.checkInfile())
 		// return (1);
