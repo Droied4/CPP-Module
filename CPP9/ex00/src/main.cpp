@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:18:01 by droied            #+#    #+#             */
-/*   Updated: 2024/11/14 22:01:37 by droied           ###   ########.fr       */
+/*   Updated: 2024/11/14 22:18:50 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ static int openFiles(char *av[], BitcoinExchange &obj)
 int saveData(BitcoinExchange &obj)
 {
 	obj.containData();
+	obj.printValue();
+	//1. Dei del futuro tienes que hacer una funcion para escribir en un contenedor local
+	//lo que vas a imprimir al final
+	//1.1 Dentro de esta funcion se debe hacer una llamada a tres funciones de checkeo
+	//		- Check Date (si la fecha esta mal poner en el contenedor un mensaje de error)
+	//		- Check Format (si el formato esta mal --- )
+	//		- Check Value (si el numero es invalido ---)
+	//1.2 Si todo esta bien entonces poner en el contenedor el output esperado.
+	//2. Funcion que imprime el contenido de un contenedor
 	return (0);
 }
 
@@ -44,7 +53,6 @@ int main (int ac, char *av[])
 		return (1);
 	if (saveData(exchange))
 			return (1);
-	exchange.printValue();
 	// exchange.printExchange(); no creada aun
 	return (0);
 }
