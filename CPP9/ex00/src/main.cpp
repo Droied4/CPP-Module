@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:18:01 by droied            #+#    #+#             */
-/*   Updated: 2024/11/14 20:33:44 by droied           ###   ########.fr       */
+/*   Updated: 2024/11/14 22:01:37 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int main (int ac, char *av[])
 		return (1);
 	if (saveData(exchange))
 			return (1);
+	exchange.printValue();
 	// exchange.printExchange(); no creada aun
 	return (0);
 }

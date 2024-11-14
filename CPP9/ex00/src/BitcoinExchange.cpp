@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:25:22 by droied            #+#    #+#             */
-/*   Updated: 2024/11/14 21:28:53 by droied           ###   ########.fr       */
+/*   Updated: 2024/11/14 21:53:23 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ void BitcoinExchange::containData()
 	// std::cout << line << "\n";
 	// m_dq_in.push_back(line);
 	while(getline(m_infile, line))
-	{
-	// std::cout << "aqui\n";
 		m_dq_in.push_back(line);
-	}
+
+	// for (std::deque<std::string>::iterator it(m_dq_in.begin()); it != m_dq_in.end(); it++)
+		// std::cout << *it << "\n";
 }
 
 void	BitcoinExchange::printValue()
