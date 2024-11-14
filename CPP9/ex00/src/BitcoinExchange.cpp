@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:25:22 by droied            #+#    #+#             */
-/*   Updated: 2024/11/14 10:42:04 by droied           ###   ########.fr       */
+/*   Updated: 2024/11/14 20:38:05 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,42 +32,29 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &t_obj) //FALT
 	return (*this);
 }
 
-std::ifstream	*BitcoinExchange::getInfile() const
+void	BitcoinExchange::openReadfile(const char *t_name_file)
 {
-	return (this->m_infile);
-}
-
-std::deque<std::string>	*BitcoinExchange::getDqIn() const
-{
-	return (this->m_dq_in);
-}
-
-void	BitcoinExchange::openReadfile(const char *t_name_file, std::ifstream &t_file)
-{
-	t_file.open(t_name_file);
-	if (!t_file.is_open())
+	m_infile.open(t_name_file);
+	m_database.open("src/data.csv");
+	if (!m_infile.is_open())
 	{
 		std::string merror = std::string("The file: ") + t_name_file + " it cannot be open";
 		throw std::runtime_error(merror.c_str());
 	}
+	if (!m_database.is_open())
+		throw std::runtime_error("Database on path 'src/data.csv' not found");
 }
 
-void	BitcoinExchange::setupFiles( std::ifstream &t_infile, std::ifstream &t_databse )
-{
-	this->m_infile = &t_infile;
-	this->m_database = &t_databse;
-}
-
-void BitcoinExchange::containData(std::deque<std::string> &dq, std::ifstream *t_file)
+void BitcoinExchange::containData()
 {
 	std::string line;
-	std::getline(*t_file, line); //lo cambie todo a ifstream pero creo que tambien puede funcionar con fstream
+	std::getline(m_infile, line); //lo cambie todo a ifstream pero creo que tambien puede funcionar con fstream
 								 //hay que probarlo, ahora mismo da segfault seguramente por el tema de referencias
 								 //y punteros.
 								 //no creo que sea por el tipo. igual segun chati es mejor usar ifstream si solo voy a leer
-								 //y pues tiene sentido en verdad.
+								 //y pues tiene sentido en verdad
 	std::cout << line << "\n";
-	dq.push_back(line);
+	m_dq_in.push_back(line);
 	// while(getline(t_file, line))
 	// {
 	// std::cout << "aqui\n";
@@ -77,7 +64,7 @@ void BitcoinExchange::containData(std::deque<std::string> &dq, std::ifstream *t_
 
 void	BitcoinExchange::printValue()
 {
-	for (std::deque<std::string>::iterator it(m_dq_in->begin()); it != m_dq_in->end(); it++)
+	for (std::deque<std::string>::iterator it(m_dq_in.begin()); it != m_dq_in.end(); it++)
 		std::cout << *it << "\n";
 }
 
