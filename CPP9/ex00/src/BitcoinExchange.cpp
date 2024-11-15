@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:25:22 by droied            #+#    #+#             */
-/*   Updated: 2024/11/15 09:10:08 by droied           ###   ########.fr       */
+/*   Updated: 2024/11/15 12:04:25 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,17 @@ void	BitcoinExchange::printValue()
 bool BitcoinExchange::checkFile(std::deque<std::string> dq_out, unsigned long i)
 {
 	std::string line = m_dq_in[i];
-	std::cout << line << "\n";
-	if (line.find("|") == std::string::npos)
+	std::string::size_type pipe = line.find("|");
+	if (pipe == std::string::npos)
 	{
 		dq_out.push_back("Error: invalid format missing '|'");
 		return (true);
 	}
+	std::string date = line.substr(0, pipe - 1);
+	std::string value = line.substr(pipe + 1, line.size());
+	
+	std::cout << date << "\n";
+	std::cout << value << "\n";
 	return (true);
 	//checkDate(dq_out, i);
 	//checkValue(dq_out, i);
