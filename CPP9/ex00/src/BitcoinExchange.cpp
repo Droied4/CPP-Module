@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:25:22 by droied            #+#    #+#             */
-/*   Updated: 2024/11/14 21:53:23 by droied           ###   ########.fr       */
+/*   Updated: 2024/11/15 09:10:08 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,28 @@ void	BitcoinExchange::printValue()
 		std::cout << *it << "\n";
 }
 
-void	BitcoinExchange::checkInfile()
+bool BitcoinExchange::checkFile(std::deque<std::string> dq_out, unsigned long i)
 {
-	try 
+	std::string line = m_dq_in[i];
+	std::cout << line << "\n";
+	if (line.find("|") == std::string::npos)
 	{
-		// checkDate();
-		// checkFormat();
-		// checkValue();
+		dq_out.push_back("Error: invalid format missing '|'");
+		return (true);
 	}
-	catch (std::exception &e)
+	return (true);
+	//checkDate(dq_out, i);
+	//checkValue(dq_out, i);
+}
+
+void	BitcoinExchange::writeData(std::deque<std::string> &dq_out)
+{
+	bool fill = false;
+	for (unsigned long i(1); i < m_dq_in.size(); i++)
 	{
-		std::cout << e.what() << "\n";
+		fill = checkFile(dq_out, i);
+		if (!fill)
+			std::cout << "no se lleno\n";
+			// conversion(dq_out, i);
 	}
 }

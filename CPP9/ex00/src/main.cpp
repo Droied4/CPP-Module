@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:18:01 by droied            #+#    #+#             */
-/*   Updated: 2024/11/14 22:18:50 by droied           ###   ########.fr       */
+/*   Updated: 2024/11/15 08:44:33 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ static int openFiles(char *av[], BitcoinExchange &obj)
 
 int saveData(BitcoinExchange &obj)
 {
+	std::deque<std::string> dq_out;
 	obj.containData();
-	obj.printValue();
+	// obj.printValue();
+	obj.writeData(dq_out);
 	//1. Dei del futuro tienes que hacer una funcion para escribir en un contenedor local
 	//lo que vas a imprimir al final
 	//1.1 Dentro de esta funcion se debe hacer una llamada a tres funciones de checkeo
