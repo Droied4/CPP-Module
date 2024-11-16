@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:15:15 by deordone          #+#    #+#             */
-/*   Updated: 2024/11/15 08:46:58 by droied           ###   ########.fr       */
+/*   Updated: 2024/11/16 20:19:23 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef BITCOINEXCHANGE_HPP
@@ -24,7 +24,6 @@ class BitcoinExchange
 		std::ifstream 			m_database;
 		std::deque<std::string>	m_dq_in;
 
-		bool	checkFile(std::deque<std::string> dq_out, unsigned long i);
 	public:
 		void	printValue();	
 		BitcoinExchange();
@@ -33,7 +32,7 @@ class BitcoinExchange
 		BitcoinExchange &operator=(const BitcoinExchange &t_obj);
 
 		void	openReadfile(const char *t_name_file);
-		void	checkInfile();
+		bool	checkFile(std::deque<std::string> &dq_out, unsigned long i);
 		void	containData();
 		void	writeData(std::deque<std::string> &dq_out);
 };
