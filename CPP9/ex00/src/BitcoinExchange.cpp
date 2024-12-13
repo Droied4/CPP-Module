@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:25:22 by droied            #+#    #+#             */
-/*   Updated: 2024/11/16 20:37:42 by droied           ###   ########.fr       */
+/*   Updated: 2024/12/13 18:24:07 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,33 @@ void	BitcoinExchange::printValue()
 		std::cout << *it << "\n";
 }
 
+bool checkDate(std::string date)
+{
+	int year(0);
+	int month(0);
+	int day(0);
+
+	std::string::size_type line = date.find("-");
+	std::istringstream(date.substr(0, line)) >> year;
+
+	if (!(year >= 0 && year <= 4242))
+		return (true);
+	
+	date.erase(0, line + 1);
+	line = date.find("-");
+	std::istringstream(date.substr(0, line)) >> month;
+
+	if (!(month >= 0 && month <= 12))
+		return (true);
+	
+	date.erase(0, line + 1);
+	std::istringstream(date) >> day;
+	
+	if (!(day >= 1 && day <= 31))
+		return (true);
+	return (false);
+}
+
 bool BitcoinExchange::checkFile(std::deque<std::string> &dq_out, unsigned long i)
 {
 	//check format
@@ -78,7 +105,11 @@ bool BitcoinExchange::checkFile(std::deque<std::string> &dq_out, unsigned long i
 	std::string date = line.substr(0, pipe - 1);
 	std::string value = line.substr(pipe + 1, line.size());	
 	//check date
-
+	if (checkDate(date))
+	{
+		dq_out.push_back("Error: Invalid date " + date);
+		return (true);
+	}
 	//end check date
 	//check value
 

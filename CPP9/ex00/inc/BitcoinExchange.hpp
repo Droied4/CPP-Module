@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:15:15 by deordone          #+#    #+#             */
-/*   Updated: 2024/11/16 20:19:23 by droied           ###   ########.fr       */
+/*   Updated: 2024/12/13 18:06:24 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef BITCOINEXCHANGE_HPP
@@ -15,6 +15,7 @@
 # include <algorithm>
 # include <iostream>
 # include <fstream>
+#include <sstream>
 # include <deque>
 
 class BitcoinExchange 
