@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:25:22 by droied            #+#    #+#             */
-/*   Updated: 2024/12/28 22:39:59 by droied           ###   ########.fr       */
+/*   Updated: 2025/01/14 13:24:45 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,42 +126,36 @@ bool BitcoinExchange::checkFile(std::deque<std::string> &dq_out, unsigned long i
 	return (false);
 }
 
+int getConversion(std::string date_target, std::string date_match)
+{
+	//aqui lo que tienes que hacer es hacer un trim de date_target y de date_match
+	//si coinciden en el ano entonces avanzas al siguiente sino restas (se para en 0)
+	//si coinciden en el mes entonces avanzas al siguiente sino restas (se para en 0)
+	//si coinciden en el dia entonces ya tienes la fecha sino restas (se para en 0)
+}
+
 void BitcoinExchange::conversion(std::deque<std::string> &dq_out, unsigned long i)
 {
-	std::string line = m_dq_in[i];
-	std::string::size_type pipe = line.find("|");
-	std::string date = line.substr(0, pipe - 1);
-	std::string value = line.substr(pipe + 1, line.size());
+	//get the date target
+	std::string dq_in = m_dq_in[i];
+	std::string::size_type pipe = dq_in.find("|");
+	std::string date_target = dq_in.substr(0, pipe - 1);
+	//trim date
+	int year(0);
+	int month(0);
+	int day(0);
 
-	std::deque<std::string> data;
-	std::string data_line;
-	for(std::deque<std::string>::iterator it(m_dq_database.begin()); it != m_dq_database.end(); it++)
-	{
-		std::string::size_type comma = it->find(","); 
-		data_line = it->substr(0, comma - 1);
-		data.push_back(data_line);
-	}
-	std::deque<std::string>::iterator db_line = find(m_dq_database.begin(), m_dq_database.end(), date);
-	if (db_line == m_dq_database.end())
-	{
-		dq_out.push_back("buscar el valor mas pequeño");
-		return ;
-	}
-	std::string::size_type comma = db_line->find(",");
-	std::string db_date = db_line->substr(0, comma - 1);
-	std::string db_value = db_line->substr(comma + 1, db_line->size());	
+	std::string::size_type line = date_target.find("-");
+	std::istringstream(date_target.substr(0, line)) >> year;
 
-	double db_number(0.0);
-	double number(0.0);
-	std::istringstream(db_value) >> db_number;
-	std::istringstream(value) >> number;
-	// std::cout << "db value " << db_value << "\n";
-	// std::cout << "value " << value << "\n";
-	// std::cout << "db date " << db_value << "\n";
-	std::ostringstream result;
-	double r = db_number * number;
-	result << r;
-	dq_out.push_back(result.str());
+	date.erase(0, line + 1);
+	line = date.find("-");
+	std::istringstream(date.substr(0, line)) >> month;
+	
+	date.erase(0, line + 1);
+	std::istringstream(date) >> day;
+
+	// no se como mierda hacerlo osea, necesito conseguir el ano comparando en la base de datos con todo pero tengo que hacer un trim del ano y tambien si no coincide.
 }
 
 void	BitcoinExchange::writeData(std::deque<std::string> &dq_out)
