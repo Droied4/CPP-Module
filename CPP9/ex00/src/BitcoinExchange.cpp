@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:25:22 by droied            #+#    #+#             */
-/*   Updated: 2025/01/14 18:58:51 by droied           ###   ########.fr       */
+/*   Updated: 2025/01/15 01:28:02 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,14 +176,33 @@ void BitcoinExchange::conversion(std::deque<std::string> &dq_out, unsigned long 
 		std::string::size_type coma = db_line.find(",");
 		std::string db_date = db_line.substr(0, coma);
 		if (!compareDates(year_target, month_target, day_target, db_date))
-		{
-			it--;
 			break ;
-		}
 		it++;
 	}
-	std::cout << *it << "\n";
-	// no se como mierda hacerlo osea, necesito conseguir el ano comparando en la base de datos con todo pero tengo que hacer un trim del ano y tambien si no coincide.
+	it--;
+	
+	std::string value_target = dq_in.substr(pipe + 1, dq_in.size());
+	
+	double num_target(0.0);
+	std::istringstream iss(value_target);
+	iss >> num_target;
+
+	std::string db_line = *it;
+	std::string::size_type coma = db_line.find(",");
+	std::string value_match = db_line.substr(coma + 1, db_line.size());
+	
+	double num_match(0.0);
+	std::istringstream is(value_match);
+	is >> num_match;
+
+	double conversion = num_target * num_match;
+	std::ostringstream oss;
+
+	oss << conversion;
+	std::string conver = oss.str();
+	
+	std::string last = date_target + " =>" + value_target + " = " + conver;
+	dq_out.push_back(last);
 }
 
 void	BitcoinExchange::writeData(std::deque<std::string> &dq_out)
