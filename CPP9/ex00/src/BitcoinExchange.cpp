@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:25:22 by droied            #+#    #+#             */
-/*   Updated: 2025/01/15 01:28:02 by droied           ###   ########.fr       */
+/*   Updated: 2025/01/15 01:30:17 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ bool checkValue(std::string value)
 	std::istringstream(value) >> number;
 	if (number < 0)
 		return (true);
-	if (number >= INT_MAX)
+	if (number > 1000)
 		return (true);
 	return (false);
 }
