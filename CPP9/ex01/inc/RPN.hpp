@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 17:52:23 by deordone          #+#    #+#             */
-/*   Updated: 2025/01/15 18:14:10 by deordone         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:35:48 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,20 @@
 # include <vector>
 # include <cstdio>
 
+typedef std::string string;
 typedef std::vector<int> i_vec;
-typedef std::vector<std::string> s_vec;
+typedef std::vector<string> s_vec;
 
 class RPN
 {
 	private:
-		s_vec	input;			
-
-		bool	parse(s_vec input);
-		bool	isNumber(char);
 	public:
-		
+		RPN();
+		RPN(const RPN &t_obj);
+		~RPN();
+		RPN &operator=(const RPN &t_obj);
+
+		void	perform_operation(s_vec);
 };
 
 #endif /*RPN_HPP*/
