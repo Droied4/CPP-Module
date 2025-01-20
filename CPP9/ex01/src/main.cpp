@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:12:48 by deordone          #+#    #+#             */
-/*   Updated: 2025/01/20 13:34:07 by deordone         ###   ########.fr       */
+/*   Updated: 2025/01/20 13:51:20 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static s_vec split_vec(std::string str, char delimiter, s_vec cont)
 	for (std::string::iterator it(str.begin()); it < str.end(); it++)
 	{
 		if (*it != delimiter)
-			cont.push_back(*it);
+			cont.push_back(*it); //ver la forma de hacer bien el string
 	}
 	return (cont);
 	// num_limits(cont, 0, 9);
