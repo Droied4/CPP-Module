@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:15:15 by deordone          #+#    #+#             */
-/*   Updated: 2024/12/28 21:56:55 by droied           ###   ########.fr       */
+/*   Updated: 2025/01/20 12:17:38 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef BITCOINEXCHANGE_HPP
@@ -38,6 +38,9 @@ class BitcoinExchange
 		void	containData();
 		void	conversion(std::deque<std::string> &dq_out, unsigned long i);
 		void	writeData(std::deque<std::string> &dq_out);
+
+		std::deque<std::string> getDqIn() const;
+		std::deque<std::string> getDqDatabase() const;
 };
 
 #endif //BITCOINEXCHANGE_HPP

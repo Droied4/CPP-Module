@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:25:22 by droied            #+#    #+#             */
-/*   Updated: 2025/01/15 01:30:17 by droied           ###   ########.fr       */
+/*   Updated: 2025/01/20 12:17:29 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &t_obj)
 BitcoinExchange::~BitcoinExchange()
 {}
 
-BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &t_obj) //FALTA HACER ESTO!!!!!
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &t_obj)
 {
 	if (this != &t_obj)
 	{
-		
+		this->m_dq_in = t_obj.getDqIn();
+		this->m_dq_database = t_obj.getDqDatabase();
 	}
 	return (*this);
 }
@@ -151,7 +152,6 @@ bool compareDates(int year, int month, int day, std::string date_match)
 		if (month_match >= month)
 			return (day_match <= day);
 	}
-	//va por ahi mas o menos ahora necesito entender por que el 2025 no lo lee
 	return (true);
 }
 
@@ -216,4 +216,14 @@ void	BitcoinExchange::writeData(std::deque<std::string> &dq_out)
 	}
 	for (std::deque<std::string>::iterator it(dq_out.begin()); it != dq_out.end(); it++)
 		std::cout << *it << "\n";
+}
+
+std::deque<std::string> BitcoinExchange::getDqIn() const
+{
+	return (this->m_dq_in);
+}
+
+std::deque<std::string> BitcoinExchange::getDqDatabase() const
+{
+	return (this->m_dq_database);
 }
