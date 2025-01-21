@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 17:52:23 by deordone          #+#    #+#             */
-/*   Updated: 2025/01/21 18:49:14 by droied           ###   ########.fr       */
+/*   Updated: 2025/01/21 23:49:13 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RPN_HPP
 
 # include <iostream>
+# include <cstdlib>
 # include <sstream>
 # include <vector>
 # include <cstdio>
@@ -33,5 +34,7 @@ class RPN
 
 		void	perform_operation(s_vec);
 };
+
+bool findAllowedChars(std::string str, std::string allowed);
 
 #endif /*RPN_HPP*/
