@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:12:48 by deordone          #+#    #+#             */
-/*   Updated: 2025/01/20 13:51:20 by deordone         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:53:46 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,17 @@ static bool findAllowedChars(std::string str, std::string allowed)
 
 static s_vec split_vec(std::string str, char delimiter, s_vec cont)
 {
-	for (std::string::iterator it(str.begin()); it < str.end(); it++)
+	std::istringstream stream(str);
+	std::string token;
+
+	while(std::getline(stream, token, delimiter))
 	{
-		if (*it != delimiter)
-			cont.push_back(*it); //ver la forma de hacer bien el string
+		if (!token.empty())
+			cont.push_back(token);
 	}
+	for (s_vec::iterator it(cont.begin()); it < cont.end(); it++)
+		std::cout << *it << "\n";
 	return (cont);
-	// num_limits(cont, 0, 9);
 }
 
 static void parse(char *av[], s_vec &cont)
@@ -72,10 +76,6 @@ int main (int ac, char *av[])
 	if (ac == 2)
 	{
 		parse(av, cont);
-		for (s_vec::iterator it(cont.begin()); it < cont.end(); it++)
-		{
-			std::cout << *it << "\n";
-		}
 		// rpn.perform_operation(av[1]);
 	}
 	else

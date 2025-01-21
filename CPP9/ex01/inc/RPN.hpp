@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 17:52:23 by deordone          #+#    #+#             */
-/*   Updated: 2025/01/20 13:35:48 by deordone         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:49:14 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RPN_HPP
 
 # include <iostream>
+# include <sstream>
 # include <vector>
 # include <cstdio>
 
