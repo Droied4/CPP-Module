@@ -6,22 +6,13 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:12:48 by deordone          #+#    #+#             */
-/*   Updated: 2025/01/21 23:48:23 by droied           ###   ########.fr       */
+/*   Updated: 2025/01/25 02:03:03 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-static void stoi_vec(s_vec str, i_vec &cont)
-{
-	int num(0);
-	for(s_vec::iterator it(str.begin()); it < str.end(); it++)
-	{	
-		std::stringstream ss(*it);
-		ss >> num;
-		cont.push_back(num);
-	}
-}
+
 
 static bool num_limits(i_vec cont, int min, int max)
 {
@@ -66,9 +57,9 @@ int main (int ac, char *av[])
 	if (ac == 2)
 	{
 		parse(av, cont);
+		rpn.perform_operation(cont);
 		for (s_vec::iterator it(cont.begin()); it < cont.end(); it++)
 			std::cout << *it << "\n";
-		rpn.perform_operation(cont);
 	}
 	else
 		printf("Usage: \n ./RPN  \"40 2 +\"\n");

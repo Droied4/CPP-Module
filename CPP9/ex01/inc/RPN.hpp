@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 17:52:23 by deordone          #+#    #+#             */
-/*   Updated: 2025/01/21 23:49:13 by droied           ###   ########.fr       */
+/*   Updated: 2025/01/25 02:01:35 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ class RPN
 		~RPN();
 		RPN &operator=(const RPN &t_obj);
 
-		void	perform_operation(s_vec);
+		void	perform_operation(s_vec &cont);
 };
 
 bool findAllowedChars(std::string str, std::string allowed);
+void stoi_vec(s_vec str, i_vec &cont);
 
 #endif /*RPN_HPP*/

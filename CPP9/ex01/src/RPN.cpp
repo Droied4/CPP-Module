@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:10:29 by deordone          #+#    #+#             */
-/*   Updated: 2025/01/22 16:03:05 by deordone         ###   ########.fr       */
+/*   Updated: 2025/01/25 02:09:03 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,17 @@ RPN &RPN::operator=(const RPN &t_obj)
 	return (*this);
 }
 
+void stoi_vec(s_vec str, i_vec &cont)
+{
+	int num(0);
+	for(s_vec::iterator it(str.begin()); it < str.end(); it++)
+	{	
+		std::stringstream ss(*it);
+		ss >> num;
+		cont.push_back(num);
+	}
+}
+
 bool findAllowedChars(std::string str, std::string allowed)
 {
 	std::string::iterator str_it(str.begin());
@@ -55,51 +66,69 @@ bool findAllowedChars(std::string str, std::string allowed)
 	return (true);
 }
 
-// bool sum(s_vec &cont, s_vec::iterator pos)
-// {
-// 	return (true);
-// }
+int sum(i_vec num, unsigned long num_pos)
+{
+	int res(0);
+	res = num[num_pos - 1] + num[num_pos];
+	return (res);
+}
 
-// bool res(s_vec &cont, s_vec::iterator pos)
-// {
-// 	return (true);
-// }
+int res(i_vec num, unsigned long num_pos)
+{
+	int res(0);
+	res = num[num_pos - 1] - num[num_pos];
+	return (res);
+}
 
-// bool mul(s_vec &cont, s_vec::iterator pos)
-// {
-// 	return (true);
-// }
+int mul(i_vec num, unsigned long num_pos)
+{
+	int res(0);
+	res = num[num_pos - 1] * num[num_pos];
+	return (res);
+}
 
-// bool div(s_vec &cont, s_vec::iterator pos)
-// {
-// 	return (true);
-// }
+int div(i_vec num, unsigned long num_pos)
+{
+	int res(0);
+	res = num[num_pos - 1] / num[num_pos];
+	return (res);
+}
 
-// bool operation(s_vec &cont, s_vec::iterator pos void (* f)(s_vec, s_vec::iterator))
-// {
-// 	return (f(cont, pos));
-// }
+bool operation(s_vec &cont, s_vec::iterator pos, int (* f)(i_vec, unsigned long))
+{
+	i_vec num;
+	stoi_vec(cont, num);
+	unsigned long num_pos(0);
+	for (s_vec::iterator it(cont.begin()); it < cont.end(); it++)
+	{
+		if (it + 1 == pos)
+			break ;
+		num_pos++;
+	}	
+	int res = f(num, num_pos);	
+	for (unsigned int i(0); i < 3; i++)
+		cont.erase(cont.begin() + num_pos - 1);
+	std::ostringstream oss;
+	oss << res;
+	std::string result;
+	result = oss.str();
+	cont.insert(cont.begin() + num_pos - 1, result);
+	return (true);
+}
 
-// bool	which_oper(s_vec &cont, s_vec::iterator pos, char symbol)
-// {
-// 	bool result(true);
-// 	switch (symbol)
-// 	{
-// 		case '+':
-// 			result = operation(cont, pos, &sum);
-// 			break ;
-// 		case '-':
-// 			result = operation(cont, pos, &res);
-// 			break ;
-// 		case '*':
-// 			result = operation(cont, pos, &mul);
-// 			break ;
-// 		case '/':
-// 			result = operation(cont, pos, &div);
-// 			break ;
-// 	}
-// 	return (true);
-// }
+bool	which_oper(s_vec &cont, s_vec::iterator pos, char symbol)
+{
+	bool result(true);
+	if (symbol == '+')
+		result = operation(cont, pos, sum);
+	else if (symbol == '-')
+		result = operation(cont, pos, res);
+	else if (symbol == '*')
+		result = operation(cont, pos, mul);
+	else if (symbol == '/')
+		result = operation(cont, pos, div);
+	return (result);
+}
 
 bool two_values(s_vec::iterator pos)
 {
@@ -115,20 +144,18 @@ bool two_values(s_vec::iterator pos)
 	return (false);
 }
 
-void	RPN::perform_operation(s_vec cont)
+void	RPN::perform_operation(s_vec &cont)
 {
 	for (s_vec::iterator it(cont.begin()); it < cont.end(); it++)
 	{
 		if (findAllowedChars(*it, "*+/-"))
 		{
+			std::string symbol(*it);
 			if (!two_values(it))
 				return (printf("Error\n"), exit(1));
-			// if (!which_oper(cont, it, *it))
-				// printf ("Error\n", exit(1));
-			//cuando lo encuentre toma los dos numeros anteriores y aplica la operacion correspondiente.
-			//elimina los dos numeros y el signo.
-			//si no hay dos numeros mandar error.
-			//luego se reincia el iterador.
+			if (!which_oper(cont, it, symbol[0]))
+				return (printf ("Error\n"), exit(1));
+			it = cont.begin();
 		}
 	}
 }
