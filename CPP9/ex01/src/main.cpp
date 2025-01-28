@@ -6,13 +6,11 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:12:48 by deordone          #+#    #+#             */
-/*   Updated: 2025/01/25 02:03:03 by deordone         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:04:01 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
-
-
 
 static bool num_limits(i_vec cont, int min, int max)
 {
