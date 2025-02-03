@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:26:34 by droied            #+#    #+#             */
-/*   Updated: 2025/01/29 18:08:48 by droied           ###   ########.fr       */
+/*   Updated: 2025/02/03 22:57:37 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,32 +34,50 @@ class PmergeMe
 
 		template <typename T> void insertValue(std::string input, T &container);
 		template <typename T> void part1(T &c);	
+		template <typename T> void my_swap(T &c, typename T::iterator &pos);	
+		template <typename T> typename T::iterator my_prev(typename T::iterator &pos);	
 
 		//aux
 		template <typename T> void print(T &a);
 };
 
-template <typename T> 
-void swap(T &c, typename T::iterator pos)
+template <typename T>
+typename T::iterator PmergeMe::my_prev(typename T::iterator &pos)
 {
-	
+	typename T::iterator prev;
+	prev = pos--;
+	return (prev);
 }
 
 template <typename T> 
-void part1(T &c)
+void PmergeMe::my_swap(T &c, typename T::iterator &pos)
 {
+	(void)c;
 	typedef typename T::iterator iterator;
-	unsigned int max_pairs(0);
-	max_pairs = c.size() / 2;
-	if (max_pairs < 2)
-		return ;
+	iterator prev;
+	prev = my_prev<T>(pos);
+	std::swap(pos->second, prev->second);
+	//la idea es hacer un swap que dependiendo del nivel de recursion entonces aplique un swap diferente.
+	// nivel 1 desplaza 2 valores
+	// nivel 2 desplaza 4 valores
+	// nivel 3 desplaza 8 valores 
+	// nivel 4 desplaza 16 valores etc.
+}
 
+template <typename T> 
+void PmergeMe::part1(T &c)
+{
+
+	typedef typename T::iterator iterator;
 	iterator it(c.begin());
-	for (unsigned int i(0); i < max_pairs; i++)
+	iterator prev;
+	it++;
+	while (it != c.end())
 	{
-		if (*it > *(it++))
-			swap(c, it);
-		it += 2;
+		prev = my_prev<T>(it);
+		if (prev->second > it->second)
+			my_swap(c, it);
+		it++;
 	}
 
 	//la parte 1 se divide en dos cosas

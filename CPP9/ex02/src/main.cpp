@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 02:16:44 by deordone          #+#    #+#             */
-/*   Updated: 2025/01/29 17:31:33 by droied           ###   ########.fr       */
+/*   Updated: 2025/02/03 21:16:26 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ int main (int ac, char *av[])
 		std::cout << "Before: " << input << "\n";
 		ford.insertValue(input, m_cont);
 		ford.insertValue(input, mm_cont);
-	
+		ford.part1(m_cont);	
+		ford.part1(mm_cont);	
+
 		ford.print(m_cont);
 		ford.print(mm_cont);
 	}
