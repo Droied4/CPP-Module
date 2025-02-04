@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:26:34 by droied            #+#    #+#             */
-/*   Updated: 2025/02/04 19:40:38 by droied           ###   ########.fr       */
+/*   Updated: 2025/02/04 20:21:04 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ class PmergeMe
 		~PmergeMe();
 
 		template <typename T> void insertValue(std::string input, T &container);
-		template <typename T> void pairSort(T &c, int recursion_lvl);	
 		template <typename T> void my_swap(T &c, typename T::iterator pos, int recursion_lvl);	
 		template <typename T> typename T::iterator my_prev(typename T::iterator pos, int recursion_lvl);	
+		template <typename T> int pairSort(T &c, int recursion_lvl);	
+		template <typename T> void binaryInsertion(T &c, int recursion_lvl);	
 
 		//aux
 		template <typename T> void print(T &a);
@@ -45,7 +46,6 @@ class PmergeMe
 template <typename T>
 typename T::iterator PmergeMe::my_prev(typename T::iterator pos, int recursion_lvl)
 {
-	std::cout << recursion_lvl << " recursion_lvl \n";
 	for (int a(0); a < recursion_lvl; a++)
 		pos--;
 	return (pos);
@@ -58,28 +58,21 @@ void PmergeMe::my_swap(T &c, typename T::iterator pos, int recursion_lvl)
 	typedef typename T::iterator iterator;
 	iterator prev;
 	iterator curr = pos;
-	prev = my_prev<T>(curr, recursion_lvl - 1);
-	for (int a(0); a < recursion_lvl - 1; a++)
+	prev = my_prev<T>(curr, recursion_lvl - (recursion_lvl / 2));
+	for (int a(0); a < recursion_lvl - (recursion_lvl / 2); a++)
 	{
 		std::swap(curr->second, prev->second);
 		curr--;
 		prev--;
 	}
-	//la idea es hacer un swap que dependiendo del nivel de recursion entonces aplique un swap diferente.
-	// nivel 1 desplaza 2 valores
-	// nivel 2 desplaza 4 valores
-	// nivel 3 desplaza 8 valores 
-	// nivel 4 desplaza 16 valores etc.
 }
 
 template <typename T> 
-void PmergeMe::pairSort(T &c, int recursion_lvl)
+int PmergeMe::pairSort(T &c, int recursion_lvl)
 {
-	if (recursion_lvl == 8)
-		return ;
-	// if (pow(2, recursion_lvl) > c.size() / 2)
-		// return ;
 	typedef typename T::iterator iterator;
+	if ((unsigned int)(recursion_lvl << 1) > c.size())
+		return (recursion_lvl);
 	iterator i(c.begin());
 	iterator prev;
 	for (int a(0); a < recursion_lvl - 1; a++)
@@ -89,20 +82,13 @@ void PmergeMe::pairSort(T &c, int recursion_lvl)
 	do 
 	{
 		prev = my_prev<T>(i, recursion_lvl - (recursion_lvl / 2));
-	std::cout << prev->second << " <- prev \n";
-	std::cout << i->second << " <- curr \n";
 		if (prev->second > i->second)
 			my_swap(c, i, recursion_lvl);
 		for (int a(0); a < recursion_lvl; a++)
 			i++;
 	}
 	while (i != end++);
-	std::cout << "new iteration\n";
-	pairSort(c, recursion_lvl << 1);
-	//la parte 1 se divide en dos cosas
-	//1 dividir elementos en pares
-	//2 sortear los pares
-	//esto se debe hacer hasta que ya no se puedan hacer mas pares
+	return (pairSort(c, recursion_lvl << 1));
 }
 
 template <typename T> 

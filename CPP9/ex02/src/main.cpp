@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 02:16:44 by deordone          #+#    #+#             */
-/*   Updated: 2025/02/04 13:52:25 by deordone         ###   ########.fr       */
+/*   Updated: 2025/02/04 20:21:58 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,15 @@ int main (int ac, char *av[])
 	{
 		parse(ac, av, input);
 		std::cout << "Before: " << input << "\n";
+		//fill the container
 		ford.insertValue(input, m_cont);
 		ford.insertValue(input, mm_cont);
-		ford.pairSort(m_cont, 2);	
-		// ford.pairSort(mm_cont, 2);	
+		//funcion que verifique si los numeros ya estan ordenados
+		//first divide and sort elements
+		ford.binarySort(m_cont, ford.pairSort(m_cont, 2));	
+		// ford.binarySort(mm_cont, ford.pairSort(mm_cont, 2));	
 
+		//aux
 		ford.print(m_cont);
 		// ford.print(mm_cont);
 	}
