@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:26:34 by droied            #+#    #+#             */
-/*   Updated: 2025/02/04 20:21:04 by droied           ###   ########.fr       */
+/*   Updated: 2025/02/04 21:45:04 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,13 @@ void PmergeMe::my_swap(T &c, typename T::iterator pos, int recursion_lvl)
 		curr--;
 		prev--;
 	}
+}
+
+template <typename T>
+void PmergeMe::binaryInsertion(T &c, int recursion_lvl)
+{
+	(void)c;
+	std::cout << recursion_lvl << "\n";
 }
 
 template <typename T> 
