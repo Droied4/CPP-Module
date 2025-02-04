@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:26:34 by droied            #+#    #+#             */
-/*   Updated: 2025/02/04 13:54:27 by deordone         ###   ########.fr       */
+/*   Updated: 2025/02/04 19:40:38 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ class PmergeMe
 template <typename T>
 typename T::iterator PmergeMe::my_prev(typename T::iterator pos, int recursion_lvl)
 {
+	std::cout << recursion_lvl << " recursion_lvl \n";
 	for (int a(0); a < recursion_lvl; a++)
 		pos--;
 	return (pos);
@@ -87,7 +88,7 @@ void PmergeMe::pairSort(T &c, int recursion_lvl)
 	end--;
 	do 
 	{
-		prev = my_prev<T>(i, recursion_lvl - 1);
+		prev = my_prev<T>(i, recursion_lvl - (recursion_lvl / 2));
 	std::cout << prev->second << " <- prev \n";
 	std::cout << i->second << " <- curr \n";
 		if (prev->second > i->second)
@@ -96,6 +97,7 @@ void PmergeMe::pairSort(T &c, int recursion_lvl)
 			i++;
 	}
 	while (i != end++);
+	std::cout << "new iteration\n";
 	pairSort(c, recursion_lvl << 1);
 	//la parte 1 se divide en dos cosas
 	//1 dividir elementos en pares
