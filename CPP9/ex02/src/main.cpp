@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 02:16:44 by deordone          #+#    #+#             */
-/*   Updated: 2025/02/03 21:16:26 by droied           ###   ########.fr       */
+/*   Updated: 2025/02/04 13:52:25 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ int main (int ac, char *av[])
 		std::cout << "Before: " << input << "\n";
 		ford.insertValue(input, m_cont);
 		ford.insertValue(input, mm_cont);
-		ford.part1(m_cont);	
-		ford.part1(mm_cont);	
+		ford.pairSort(m_cont, 2);	
+		// ford.pairSort(mm_cont, 2);	
 
 		ford.print(m_cont);
-		ford.print(mm_cont);
+		// ford.print(mm_cont);
 	}
 	else
 		std::cout << "Your program must be able to handle at least 3000 different integers.\n That's right i'm lazy as fck\n";
