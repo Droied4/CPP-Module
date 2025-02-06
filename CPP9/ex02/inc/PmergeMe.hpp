@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:26:34 by droied            #+#    #+#             */
-/*   Updated: 2025/02/04 21:45:04 by droied           ###   ########.fr       */
+/*   Updated: 2025/02/06 13:38:53 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void PmergeMe::my_swap(T &c, typename T::iterator pos, int recursion_lvl)
 	typedef typename T::iterator iterator;
 	iterator prev;
 	iterator curr = pos;
-	prev = my_prev<T>(curr, recursion_lvl - (recursion_lvl / 2));
-	for (int a(0); a < recursion_lvl - (recursion_lvl / 2); a++)
+	prev = my_prev<T>(curr, recursion_lvl - (recursion_lvl >> 1));
+	for (int a(0); a < recursion_lvl - (recursion_lvl >> 1); a++)
 	{
 		std::swap(curr->second, prev->second);
 		curr--;
@@ -70,8 +70,23 @@ void PmergeMe::my_swap(T &c, typename T::iterator pos, int recursion_lvl)
 template <typename T>
 void PmergeMe::binaryInsertion(T &c, int recursion_lvl)
 {
-	(void)c;
-	std::cout << recursion_lvl << "\n";
+	typedef typename T::iterator iterator;
+	if (recursion_lvl == 4)
+		return ;
+	iterator curr(c.begin());
+	iterator prev;
+	for (int a(1); a < recursion_lvl; a++)
+		curr++;
+	prev = my_prev<T>(curr, recursion_lvl - (recursion_lvl >> 1));
+
+
+	//while
+	// insertPend(c, pend); //function insert on pend odd elements. except 1
+	// binarySearch(c, pend); //binary search and insert the value in the corresponding place.
+
+	std::cout << "Current -> "<< curr->second << "\n";
+	std::cout << "Prev -> "<< prev->second << "\n";
+	binaryInsertion(c, recursion_lvl >> 1);
 }
 
 template <typename T> 
@@ -88,7 +103,7 @@ int PmergeMe::pairSort(T &c, int recursion_lvl)
 	end--;
 	do 
 	{
-		prev = my_prev<T>(i, recursion_lvl - (recursion_lvl / 2));
+		prev = my_prev<T>(i, recursion_lvl - (recursion_lvl >> 1));
 		if (prev->second > i->second)
 			my_swap(c, i, recursion_lvl);
 		for (int a(0); a < recursion_lvl; a++)
