@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:26:34 by droied            #+#    #+#             */
-/*   Updated: 2025/02/07 11:12:00 by droied           ###   ########.fr       */
+/*   Updated: 2025/02/07 13:25:29 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ class PmergeMe
 		~PmergeMe();
 
 		template <typename T> void insertValue(std::string input, T &container);
-		template <typename T> void my_swap(T &c, typename T::iterator pos, int recursion_lvl);	
+		template <typename T> void my_swap(T &c, typename T::iterator pos, int recursion_lvl);
 		template <typename T> typename T::iterator my_prev(typename T::iterator pos, int recursion_lvl);	
-		template <typename T> int pairSort(T &c, int recursion_lvl);	
-		template <typename T> void insertPend(T &pend, typename T::iterator prev, int recursion_lvl);	
+		template <typename T> int pairSort(T &c, int recursion_lvl);
+		template <typename T> void insertPend(T &pend, typename T::iterator prev, int recursion_lvl);
 		template <typename T> void deleteMain(T &c, typename T::iterator prev, int recursion_lvl);
 
-		template <typename T> typename T::iterator recurSearch(T c, int start, int end, typename T::iterator to_search);
+		template <typename T> typename T::iterator recurSearch(T c, int start, int end, typename T::iterator to_search, int recursion_lvl);
 		template <typename T> void binarySearch(T &c, T &p, int recursion_lvl);
 		template <typename T> void binaryInsertion(T &c, int recursion_lvl);	
 
@@ -95,13 +95,14 @@ void PmergeMe::insertPend(T &pend, typename T::iterator prev, int recursion_lvl)
 }
 
 template <typename T> 
-typename T::iterator PmergeMe::recurSearch(T c, int start, int end, typename T::iterator to_search)
+typename T::iterator PmergeMe::recurSearch(T c, int start, int end, typename T::iterator to_search, int recursion_lvl)
 {
 	typedef typename T::iterator iterator;
 	iterator middle(c.begin());
 	while (start++ < (end >> 1))
 		middle++;
-	std::cout << "middle -> "<< middle->second << "\n";
+	std::cout << "middle -> " << middle->second << "\n";
+	std::cout << "rl -> " << recursion_lvl << "\n";
 	return (to_search);
 }
 
@@ -112,13 +113,14 @@ void PmergeMe::binarySearch(T &c, T &p, int recursion_lvl)
 
 	iterator to_search(p.begin());
 	iterator found;
+	//tengo que cambiar el end tengo que seguir averiguando como hacerlo
 	int end = (c.size() / (recursion_lvl >> 1 )) - (recursion_lvl >> 1); 
 	//vale ahora el problema es que el numero puede quedar entre valores que no importan 
 	//tiene que ir avanzando segun el recursion_lvl/2 y esos son los que debe comprobar.
 	//debo entonces calcular cuantos pares de 4 hay 
 	// std::cout << "size -> " << c.size() << "\n";
 	 std::cout << "end -> "<< end << "\n";
-	found = recurSearch(c, 0, end, to_search);	
+	found = recurSearch(c, 0, end, to_search, recursion_lvl);	
 
 	//una vez encontrado found debo insertarlo
 	std::cout << "Pend stack: \n";
