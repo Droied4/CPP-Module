@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:25:22 by droied            #+#    #+#             */
-/*   Updated: 2025/01/20 12:17:29 by deordone         ###   ########.fr       */
+/*   Updated: 2025/02/11 22:34:40 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,18 @@ void BitcoinExchange::containData()
 {
 	std::string line;
 	std::string line_db;
+	int i(0);
 	while(getline(m_infile, line))
-		m_dq_in.push_back(line);
+		m_dq_in.insert(std::make_pair(i++, line));
+	int it(0);
 	while(getline(m_database, line_db))
-		m_dq_database.push_back(line_db);
+		m_dq_database.insert(std::make_pair(it++, line_db));
 }
 
 void	BitcoinExchange::printValue()
 {
-	for (std::deque<std::string>::iterator it(m_dq_in.begin()); it != m_dq_in.end(); it++)
-		std::cout << *it << "\n";
+	for (std::map<int, std::string>::iterator it(m_dq_in.begin()); it != m_dq_in.end(); it++)
+		std::cout << it->second << "\n";
 }
 
 bool checkDate(std::string date)
@@ -100,14 +102,14 @@ bool checkValue(std::string value)
 	return (false);
 }
 
-bool BitcoinExchange::checkFile(std::deque<std::string> &dq_out, unsigned long i)
+bool BitcoinExchange::checkFile(std::map<int, std::string> &dq_out, unsigned long i)
 {
 	//check format
 	std::string line = m_dq_in[i];
 	std::string::size_type pipe = line.find("|");
 	if (pipe == std::string::npos)
 	{
-		dq_out.push_back("Error: invalid format missing '|'");
+		dq_out.insert(std::make_pair(i, "Error: invalid format missing '|'"));
 		return (true);
 	}
 	std::string date = line.substr(0, pipe - 1);
@@ -115,13 +117,13 @@ bool BitcoinExchange::checkFile(std::deque<std::string> &dq_out, unsigned long i
 	//check date
 	if (checkDate(date))
 	{
-		dq_out.push_back("Error: Invalid date " + date);
+		dq_out.insert(std::make_pair(i, "Error: Invalid date " + date));
 		return (true);
 	}
 	//check value
 	if (checkValue(value))
 	{
-		dq_out.push_back("Error: Invalid value " + value);
+		dq_out.insert(std::make_pair(i, "Error: Invalid value " + value));
 		return (true);
 	}
 	return (false);
@@ -155,7 +157,7 @@ bool compareDates(int year, int month, int day, std::string date_match)
 	return (true);
 }
 
-void BitcoinExchange::conversion(std::deque<std::string> &dq_out, unsigned long i)
+void BitcoinExchange::conversion(std::map<int, std::string> &dq_out, unsigned long i)
 {
 	(void)dq_out;	
 	//get the date target
@@ -169,10 +171,10 @@ void BitcoinExchange::conversion(std::deque<std::string> &dq_out, unsigned long 
 
 	trimDate(date_target, year_target, month_target, day_target);
 	
-	std::deque<std::string>::iterator it(m_dq_database.begin());
+	std::map<int, std::string>::iterator it(m_dq_database.begin());
 	while (it != m_dq_database.end())
 	{
-		std::string db_line = *it;
+		std::string db_line = it->second;
 		std::string::size_type coma = db_line.find(",");
 		std::string db_date = db_line.substr(0, coma);
 		if (!compareDates(year_target, month_target, day_target, db_date))
@@ -187,7 +189,7 @@ void BitcoinExchange::conversion(std::deque<std::string> &dq_out, unsigned long 
 	std::istringstream iss(value_target);
 	iss >> num_target;
 
-	std::string db_line = *it;
+	std::string db_line = it->second;
 	std::string::size_type coma = db_line.find(",");
 	std::string value_match = db_line.substr(coma + 1, db_line.size());
 	
@@ -202,10 +204,10 @@ void BitcoinExchange::conversion(std::deque<std::string> &dq_out, unsigned long 
 	std::string conver = oss.str();
 	
 	std::string last = date_target + " =>" + value_target + " = " + conver;
-	dq_out.push_back(last);
+	dq_out.insert(std::make_pair(i, last));
 }
 
-void	BitcoinExchange::writeData(std::deque<std::string> &dq_out)
+void	BitcoinExchange::writeData(std::map<int, std::string> &dq_out)
 {
 	bool fill = false;
 	for (unsigned long i(1); i < m_dq_in.size(); i++)
@@ -214,16 +216,16 @@ void	BitcoinExchange::writeData(std::deque<std::string> &dq_out)
 		if (!fill)
 			conversion(dq_out, i);
 	}
-	for (std::deque<std::string>::iterator it(dq_out.begin()); it != dq_out.end(); it++)
-		std::cout << *it << "\n";
+	for (std::map<int, std::string>::iterator it(dq_out.begin()); it != dq_out.end(); it++)
+		std::cout << it->second << "\n";
 }
 
-std::deque<std::string> BitcoinExchange::getDqIn() const
+std::map<int, std::string> BitcoinExchange::getDqIn() const
 {
 	return (this->m_dq_in);
 }
 
-std::deque<std::string> BitcoinExchange::getDqDatabase() const
+std::map<int, std::string> BitcoinExchange::getDqDatabase() const
 {
 	return (this->m_dq_database);
 }

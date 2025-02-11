@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 21:18:01 by droied            #+#    #+#             */
-/*   Updated: 2024/12/28 21:57:01 by droied           ###   ########.fr       */
+/*   Updated: 2025/02/11 22:20:42 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int openFiles(char *av[], BitcoinExchange &obj)
 
 int saveData(BitcoinExchange &obj)
 {
-	std::deque<std::string> dq_out;
+	std::map<int, std::string> dq_out;
 	obj.containData();
 	obj.writeData(dq_out);
 	return (0);
