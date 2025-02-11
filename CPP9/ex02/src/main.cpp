@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 02:16:44 by deordone          #+#    #+#             */
-/*   Updated: 2025/02/04 21:36:58 by droied           ###   ########.fr       */
+/*   Updated: 2025/02/11 17:26:08 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int main (int ac, char *av[])
 		// ford.binarySort(mm_cont, ford.pairSort(mm_cont, 2));	
 
 		//aux
-		ford.print(m_cont);
+		ford.print(m_cont, 2);
 		// ford.print(mm_cont);
 	}
 	else

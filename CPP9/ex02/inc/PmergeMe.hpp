@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:26:34 by droied            #+#    #+#             */
-/*   Updated: 2025/02/11 12:04:37 by droied           ###   ########.fr       */
+/*   Updated: 2025/02/11 17:57:05 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,15 @@ class PmergeMe
 		template <typename T> void deleteMain(T &c, typename T::iterator prev, int recursion_lvl);
 		template <typename T> void addMain(T &c, typename T::iterator found, typename T::iterator num, int recursion_lvl);
 
+		template <typename T> bool checkOdd(T &c, int recursion_lvl);
 		template <typename T> typename T::iterator recurSearch(T &c, int start, int end, typename T::iterator &found, typename T::iterator to_search, int recursion_lvl);
 		template <typename T> void binarySearch(T &c, T &p, int recursion_lvl);
+
+		template <typename T> void oddElement(T &c, T &p, typename T::iterator prev, int recursion_lvl);
 		template <typename T> void binaryInsertion(T &c, int recursion_lvl);	
 
 		//aux
-		template <typename T> void print(T &a);
+		template <typename T> void print(T &a, int flag);
 };
 
 template <typename T>
@@ -93,8 +96,11 @@ void PmergeMe::addMain(T &c, typename T::iterator found, typename T::iterator nu
 	iterator i(c.end());
 	i--;
 	iterator prev = i;
-	for (iterator a(c.end()); a != found; a--)
-		tmp.insert(std::pair<unsigned int, unsigned int>(a->first, a->second));
+	int b(c.size());
+	iterator a(c.end());
+	a--;
+	for (; a != found; a--)
+		tmp.insert(std::pair<unsigned int, unsigned int>(b--, a->second));
 	for (unsigned int it(0); it < tmp.size(); it++)
 	{
 		i--;
@@ -119,7 +125,6 @@ void PmergeMe::addMain(T &c, typename T::iterator found, typename T::iterator nu
 template <typename T>
 void PmergeMe::insertPend(T &pend, typename T::iterator prev, int recursion_lvl)
 {
-
 	for (int a(0); a < (recursion_lvl >> 1); a++)
 	{
     	pend.insert(std::pair<unsigned int, unsigned int>(prev->first, prev->second));
@@ -150,13 +155,26 @@ typename T::iterator PmergeMe::recurSearch(T &c, int start, int end, typename T:
 			found++;
 		}
 	}
+	// print(c, 2);
 	found--;
+	 std::cout << "found -> "<< found->second << "\n";
+	std::cout << "to_search -> "<< to_search->second << "\n";
 	if (found->second == to_search->second)
 		return (found);
 	else if (found->second > to_search->second)
+	{
+		std::cout << found->second << " mayor que " << to_search->second << "\n";
+		std::cout << "start -> " << start << "\n";
+		std::cout << "end -> " << end << "\n";
 	 	return (recurSearch(c, start, --end, ++found, to_search, recursion_lvl));
+	}
 	else
+	{
+		std::cout << found->second << " menor que " << to_search->second << "\n";
+		std::cout << "start -> " << start << "\n";
+		std::cout << "end -> " << end << "\n";
 		return (recurSearch(c, 0, --end, ++found, to_search, recursion_lvl));
+	}
 }
 
 template <typename T> 
@@ -167,8 +185,49 @@ void PmergeMe::binarySearch(T &c, T &p, int recursion_lvl)
 	iterator to_search(p.begin());
 	iterator found(c.begin());
 	int end = (c.size() / (recursion_lvl >> 1)) - 1;
+	for (int a(1); a < (recursion_lvl >> 1) ; a++)
+		++to_search;
 	recurSearch(c, 0, end, found, to_search, recursion_lvl);	
-	addMain(c, found, to_search, recursion_lvl);
+	for (int a(1); a < (recursion_lvl >> 1) ; a++)
+		--to_search;
+	addMain(c, found, to_search, recursion_lvl);	
+}
+
+
+template <typename T>
+void PmergeMe::oddElement(T &c, T &pend, typename T::iterator prev, int recursion_lvl)
+{
+	// typedef typename T::iterator iterator;
+
+	pend.clear();
+	prev = c.end();
+	int end = (c.size() / (recursion_lvl >> 1)) - 1;
+	end *= (recursion_lvl >> 1);
+	end = (c.size() - end) - (recursion_lvl >> 1);
+	for (int a(-1); a < end; a++)
+		prev--;
+	insertPend(pend, prev, recursion_lvl);
+	deleteMain(c, prev, recursion_lvl);
+	binarySearch(c, pend, recursion_lvl);
+
+	// iterator to_search(pend.end());
+	// to_search--;
+	// // end--;
+	// iterator found(c.begin());
+	// recurSearch(c, 0, end, found, to_search, recursion_lvl);	
+	// std::cout << "main\n";
+	// print(c, 2);
+	// std::cout << "pend\n";
+	// print(pend, 2);
+}
+
+template <typename T>
+bool PmergeMe::checkOdd(T &c, int recursion_lvl)
+{
+	int i(c.size() / (recursion_lvl >> 1));
+	if (i % 2 != 0)
+		return (true);
+	return (false);
 }
 
 template <typename T>
@@ -194,7 +253,6 @@ void PmergeMe::binaryInsertion(T &c, int recursion_lvl)
 			insertPend(pend, prev, recursion_lvl);
 			deleteMain(c, prev, recursion_lvl);
 			binarySearch(c, pend, recursion_lvl);
-			//odd
 		}
 		for (int a(0); a < recursion_lvl; a++)
 		{
@@ -205,6 +263,9 @@ void PmergeMe::binaryInsertion(T &c, int recursion_lvl)
 		odd += 2;
 	}
 	while(curr != end++);
+	std::cout << "rlvl "<< recursion_lvl << "\n";
+	if (checkOdd(c, recursion_lvl))
+		oddElement(c, pend, prev, recursion_lvl);
 	binaryInsertion(c, recursion_lvl >> 1);
 }
 
@@ -243,10 +304,18 @@ void PmergeMe::insertValue(std::string input, T &container)
 }
 
 template <typename T> 
-void PmergeMe::print(T &a)
+void PmergeMe::print(T &a, int flag)
 {
-    for (typename T::iterator it(a.begin()); it != a.end(); ++it) 
-        std::cout << it->second << " ";
+	if (flag == 1)
+	{
+    	for (typename T::iterator it(a.begin()); it != a.end(); ++it) 
+        	std::cout << it->first << " ";
+	}
+	else
+	{
+    	for (typename T::iterator it(a.begin()); it != a.end(); ++it) 
+        	std::cout << it->second << " ";
+	}
     std::cout << "\n";
 }
 
