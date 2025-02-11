@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:12:48 by deordone          #+#    #+#             */
-/*   Updated: 2025/01/28 12:04:01 by droied           ###   ########.fr       */
+/*   Updated: 2025/02/11 23:15:07 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 static bool num_limits(i_vec cont, int min, int max)
 {
+	i_vec::iterator it(cont.begin());
 	for (unsigned int i(0); i < cont.size(); i++)
 	{
-		if (!(cont[i] >= min && cont[i] <= max))
+		it++;
+		if (!(*it >= min && *it <= max))
 			return (false);
 	}
 	return (true);
@@ -56,7 +58,7 @@ int main (int ac, char *av[])
 	{
 		parse(av, cont);
 		rpn.perform_operation(cont);
-		for (s_vec::iterator it(cont.begin()); it < cont.end(); it++)
+		for (s_vec::iterator it(cont.begin()); it != cont.end(); it++)
 			std::cout << *it << "\n";
 	}
 	else

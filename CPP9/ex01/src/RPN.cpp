@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:10:29 by deordone          #+#    #+#             */
-/*   Updated: 2025/01/25 02:09:03 by deordone         ###   ########.fr       */
+/*   Updated: 2025/02/11 23:51:29 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ RPN &RPN::operator=(const RPN &t_obj)
 void stoi_vec(s_vec str, i_vec &cont)
 {
 	int num(0);
-	for(s_vec::iterator it(str.begin()); it < str.end(); it++)
+	for(s_vec::iterator it(str.begin()); it != str.end(); it++)
 	{	
 		std::stringstream ss(*it);
 		ss >> num;
@@ -68,29 +68,45 @@ bool findAllowedChars(std::string str, std::string allowed)
 
 int sum(i_vec num, unsigned long num_pos)
 {
+	i_vec::iterator it(num.begin());
+	i_vec::iterator i(num.begin());
+	std::advance(it, num_pos);
+	std::advance(i, num_pos - 1);
 	int res(0);
-	res = num[num_pos - 1] + num[num_pos];
+	res = *i + *it;
 	return (res);
 }
 
 int res(i_vec num, unsigned long num_pos)
 {
+	i_vec::iterator it(num.begin());
+	i_vec::iterator i(num.begin());
+	std::advance(it, num_pos);
+	std::advance(i, num_pos - 1);
 	int res(0);
-	res = num[num_pos - 1] - num[num_pos];
+	res = *i - *it;
 	return (res);
 }
 
 int mul(i_vec num, unsigned long num_pos)
 {
+	i_vec::iterator it(num.begin());
+	i_vec::iterator i(num.begin());
+	std::advance(it, num_pos);
+	std::advance(i, num_pos - 1);
 	int res(0);
-	res = num[num_pos - 1] * num[num_pos];
+	res = *i * *it;
 	return (res);
 }
 
 int div(i_vec num, unsigned long num_pos)
 {
+	i_vec::iterator it(num.begin());
+	i_vec::iterator i(num.begin());
+	std::advance(it, num_pos);
+	std::advance(i, num_pos - 1);
 	int res(0);
-	res = num[num_pos - 1] / num[num_pos];
+	res = *i / *it;
 	return (res);
 }
 
@@ -99,20 +115,29 @@ bool operation(s_vec &cont, s_vec::iterator pos, int (* f)(i_vec, unsigned long)
 	i_vec num;
 	stoi_vec(cont, num);
 	unsigned long num_pos(0);
-	for (s_vec::iterator it(cont.begin()); it < cont.end(); it++)
+	for (s_vec::iterator it(cont.begin()); it != cont.end(); it++)
 	{
-		if (it + 1 == pos)
+		s_vec::iterator i(it);
+		i++;
+		if (i == pos)
 			break ;
 		num_pos++;
 	}	
-	int res = f(num, num_pos);	
+	int res = f(num, num_pos);
+	s_vec::iterator it(cont.begin());
 	for (unsigned int i(0); i < 3; i++)
-		cont.erase(cont.begin() + num_pos - 1);
+	{
+		it = cont.begin();
+		std::advance(it, num_pos - 1);
+		cont.erase(it);
+	}
 	std::ostringstream oss;
 	oss << res;
 	std::string result;
 	result = oss.str();
-	cont.insert(cont.begin() + num_pos - 1, result);
+	it = cont.begin();
+	std::advance(it, num_pos - 1);
+	cont.insert(it, result);
 	return (true);
 }
 
@@ -130,28 +155,26 @@ bool	which_oper(s_vec &cont, s_vec::iterator pos, char symbol)
 	return (result);
 }
 
-bool two_values(s_vec::iterator pos)
+bool two_values(s_vec::iterator pos, s_vec &c)
 {
-	pos--;
-	if (!(pos->empty()))
+	s_vec::iterator b(c.begin());
+	for (int i(0); i < 2; i++)
 	{
-		pos--;
-		if ((pos->empty()))
+		if (pos == b)
 			return (false);
-		else
-			return (true);
+		pos--;
 	}
-	return (false);
+	return (true);
 }
 
 void	RPN::perform_operation(s_vec &cont)
 {
-	for (s_vec::iterator it(cont.begin()); it < cont.end(); it++)
+	for (s_vec::iterator it(cont.begin()); it != cont.end(); it++)
 	{
 		if (findAllowedChars(*it, "*+/-"))
 		{
 			std::string symbol(*it);
-			if (!two_values(it))
+			if (!two_values(it, cont))
 				return (printf("Error\n"), exit(1));
 			if (!which_oper(cont, it, symbol[0]))
 				return (printf ("Error\n"), exit(1));
