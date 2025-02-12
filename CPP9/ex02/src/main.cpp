@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 02:16:44 by deordone          #+#    #+#             */
-/*   Updated: 2025/02/11 17:26:08 by droied           ###   ########.fr       */
+/*   Updated: 2025/02/12 01:10:38 by droied           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,26 @@ int main (int ac, char *av[])
 {
 	std::string input;
 	PmergeMe ford;
-	map	m_cont;
-	mmap mm_cont;
+	vec	v_cont;
+	deq dq_cont;
 	 
 	if (ac <= 3000)
 	{
 		parse(ac, av, input);
 		std::cout << "Before: " << input << "\n";
-		//fill the container
-		ford.insertValue(input, m_cont);
-		ford.insertValue(input, mm_cont);
-		//funcion que verifique si los numeros ya estan ordenados
-		//first divide and sort elements
-		ford.binaryInsertion(m_cont, ford.pairSort(m_cont, 2));	
-		// ford.binarySort(mm_cont, ford.pairSort(mm_cont, 2));	
+
+		ford.insertValue(input, v_cont);
+		ford.insertValue(input, dq_cont);
+		
+		//ford.pairSort(v_cont, 2)
+		// ford.pairSort(dq_cont, 2);
+		
+		ford.binaryInsertion(v_cont, ford.pairSort(v_cont, 2));	
+		// ford.binarySort(dq_cont, ford.pairSort(dq_cont, 2));	
 
 		//aux
-		ford.print(m_cont, 2);
-		// ford.print(mm_cont);
+		ford.print(v_cont);
+		ford.print(dq_cont);
 	}
 	else
 		std::cout << "Your program must be able to handle at least 3000 different integers.\n That's right i'm lazy as fck\n";
