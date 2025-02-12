@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:26:34 by droied            #+#    #+#             */
-/*   Updated: 2025/02/12 10:35:41 by droied           ###   ########.fr       */
+/*   Updated: 2025/02/12 14:06:41 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ class PmergeMe
 		template <typename T> void insertPend(T &pend, typename T::iterator prev, int recursion_lvl);
 		template <typename T> void deleteMain(T &c, typename T::iterator prev, int recursion_lvl);
 		template <typename T> void addMain(T &c, typename T::iterator found, typename T::iterator num, int recursion_lvl);
+		template <typename T> void addRes(T &c, T &r, int recursion_lvl);
 
 		template <typename T> bool checkOdd(T &c, int recursion_lvl);
 		template <typename T> typename T::iterator recurSearch(T &c, int start, int end, typename T::iterator &found, typename T::iterator to_search, int recursion_lvl);
@@ -101,12 +102,12 @@ void PmergeMe::addMain(T &c, typename T::iterator found, typename T::iterator nu
 
 
 template <typename T>
-void PmergeMe::insertPend(T &pend, typename T::iterator prev, int recursion_lvl)
+void PmergeMe::insertPend(T &pend, typename T::iterator curr, int recursion_lvl)
 {
 	for (int a(0); a < (recursion_lvl >> 1); a++)
 	{
-    	pend.insert(std::pair<unsigned int, unsigned int>(prev->first, prev->second));
-		prev--;
+		pend.push_back(*curr);
+		curr--;
 	}
 }
 
@@ -189,19 +190,46 @@ bool PmergeMe::checkOdd(T &c, int recursion_lvl)
 	return (false);
 }
 
+
+template <typename T>
+void PmergeMe::addRes(T &c, T &r, int recursion_lvl)
+{
+	typename T::iterator curr(c.begin());
+	int posible_pair = c.size() / (recursion_lvl >> 1);
+	int total_number_pair = posible_pair * (recursion_lvl >> 1);
+	int res = (int)c.size() - total_number_pair;
+	
+	std::advance(curr, total_number_pair);
+	for (int i(0); i < res; i++)
+	{
+		r.push_back(*curr);
+		curr++;
+	}
+	//aqui eliminas lo que hay en main
+	for (int i(0); i < res; res--)
+		c.erase(c.begin() + res);
+}
+
 template <typename T>
 void PmergeMe::binaryInsertion(T &c, int recursion_lvl)
 {
 	// typedef typename T::iterator iterator;
-	
-	(void)c;
-	std::cout << "recursion lvl: " << recursion_lvl << "\n";
-	// int b(1);
-	
-
-	binaryInsertion(c, recursion_lvl >> 1);
-	// T pend;
-
+	if (recursion_lvl == 0)
+		return ;
+	if (((int)c.size() - recursion_lvl) < (recursion_lvl >> 1))
+		binaryInsertion(c, recursion_lvl >> 1);
+	//containers
+	T pend;
+	T odd;
+	T res;
+	//iterators
+	// iterator curr(c.begin() + (recursion_lvl >> 1) - 1);
+	res.clear();
+	addRes(c, res, recursion_lvl);
+		
+	//antes de acabar la recursion debes volver a agregar los elementos de res en el main
+	print(res);
+	// iterator prev(c.begin());
 	/*
 	if (recursion_lvl == 8)
 		return ;
