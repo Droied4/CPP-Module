@@ -6,7 +6,7 @@
 /*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:26:34 by droied            #+#    #+#             */
-/*   Updated: 2025/02/12 14:06:41 by deordone         ###   ########.fr       */
+/*   Updated: 2025/02/12 16:52:30 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ class PmergeMe
 		template <typename T> void insertPend(T &pend, typename T::iterator prev, int recursion_lvl);
 		template <typename T> void deleteMain(T &c, typename T::iterator prev, int recursion_lvl);
 		template <typename T> void addMain(T &c, typename T::iterator found, typename T::iterator num, int recursion_lvl);
+
+		template <typename T> void backRes(T &c, T &r);
 		template <typename T> void addRes(T &c, T &r, int recursion_lvl);
 
 		template <typename T> bool checkOdd(T &c, int recursion_lvl);
@@ -211,6 +213,17 @@ void PmergeMe::addRes(T &c, T &r, int recursion_lvl)
 }
 
 template <typename T>
+void PmergeMe::backRes(T &c, T &r)
+{
+	typename T::iterator curr(c.begin());
+	for (unsigned int i(0); i < r.size(); i++)
+	{
+		c.push_back(*curr);
+		curr++;
+	}
+}
+
+template <typename T>
 void PmergeMe::binaryInsertion(T &c, int recursion_lvl)
 {
 	// typedef typename T::iterator iterator;
@@ -226,6 +239,8 @@ void PmergeMe::binaryInsertion(T &c, int recursion_lvl)
 	// iterator curr(c.begin() + (recursion_lvl >> 1) - 1);
 	res.clear();
 	addRes(c, res, recursion_lvl);
+
+	backRes(c, res);
 		
 	//antes de acabar la recursion debes volver a agregar los elementos de res en el main
 	print(res);
