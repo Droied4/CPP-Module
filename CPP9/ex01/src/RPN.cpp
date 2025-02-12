@@ -6,7 +6,7 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:10:29 by deordone          #+#    #+#             */
-/*   Updated: 2025/02/11 23:51:29 by droied           ###   ########.fr       */
+/*   Updated: 2025/02/12 16:21:46 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,13 @@ int div(i_vec num, unsigned long num_pos)
 	std::advance(it, num_pos);
 	std::advance(i, num_pos - 1);
 	int res(0);
-	res = *i / *it;
+	if (*it != 0)
+		res = *i / *it;
+	else
+	{
+		printf("Illegal division between zero\nFuck u bitch\n");
+		exit(1);
+	}
 	return (res);
 }
 
