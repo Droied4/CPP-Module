@@ -1,353 +1,191 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: droied <marvin@42.fr>                      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/28 11:26:34 by droied            #+#    #+#             */
-/*   Updated: 2025/02/12 16:52:30 by deordone         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PMERGEME_HPP
-# define PMERGEME_HPP
-
-# include <iostream>
-# include <cstdlib>
-# include <sstream>
-# include <cmath>
-# include <vector>
-# include <deque>
-
-typedef std::vector<unsigned int> vec;
-typedef std::deque<unsigned int> deq;
-
-class PmergeMe 
+#define PMERGEME_HPP
+#include <algorithm>
+#include <deque>
+#include <vector>
+class PmergeMe
 {
-	private:
-		template <typename T> void swap(T &c, typename T::iterator pos);
-	public:
-		PmergeMe();
-		PmergeMe(const PmergeMe &obj);
-		PmergeMe &operator=(const PmergeMe &obj);
-		~PmergeMe();
+  public:
+    PmergeMe();
+    PmergeMe(const PmergeMe& pm);
+    PmergeMe& operator=(const PmergeMe& pm);
+    ~PmergeMe();
 
-		template <typename T> void insertValue(std::string input, T &container);
-		template <typename T> void my_swap(T &c, typename T::iterator pos, int recursion_lvl);
-		template <typename T> typename T::iterator my_prev(typename T::iterator pos, int recursion_lvl);	
-		template <typename T> int pairSort(T &c, int recursion_lvl);
-		template <typename T> void insertPend(T &pend, typename T::iterator prev, int recursion_lvl);
-		template <typename T> void deleteMain(T &c, typename T::iterator prev, int recursion_lvl);
-		template <typename T> void addMain(T &c, typename T::iterator found, typename T::iterator num, int recursion_lvl);
+    void sort_vec(std::vector<int>& vec);
+    void sort_deque(std::deque<int>& deque);
 
-		template <typename T> void backRes(T &c, T &r);
-		template <typename T> void addRes(T &c, T &r, int recursion_lvl);
+  private:
+    template <typename T> void _merge_insertion_sort(T& container, int pair_level);
 
-		template <typename T> bool checkOdd(T &c, int recursion_lvl);
-		template <typename T> typename T::iterator recurSearch(T &c, int start, int end, typename T::iterator &found, typename T::iterator to_search, int recursion_lvl);
-		template <typename T> void binarySearch(T &c, T &p, int recursion_lvl);
-
-		template <typename T> void oddElement(T &c, T &p, typename T::iterator prev, int recursion_lvl);
-		template <typename T> void binaryInsertion(T &c, int recursion_lvl);	
-
-		//aux
-		template <typename T> void print(T &a);
+    template <typename T> void _swap_pair(T it, int pair_level);
 };
 
-template <typename T>
-void PmergeMe::deleteMain(T &c, typename T::iterator prev, int recursion_lvl)
+long _jacobsthal_number(long n);
+
+template <typename T> bool _comp(T lv, T rv) { return *lv < *rv; }
+
+template <typename T> T next(T it, int steps)
 {
-	typename	T::iterator next = prev;
-	for (int a(0); a < (recursion_lvl >> 1); a++)
-	{
-		next--;
-		c.erase(prev);
-		prev = next;
-	}
+    std::advance(it, steps);
+    return it;
 }
 
-template <typename T>
-void PmergeMe::addMain(T &c, typename T::iterator found, typename T::iterator num, int recursion_lvl)
+template <typename T> void PmergeMe::_swap_pair(T it, int pair_level)
 {
-	typedef typename T::iterator iterator;
-	T tmp;
-	iterator i(c.end());
-	i--;
-	iterator prev = i;
-	int b(c.size());
-	iterator a(c.end());
-	a--;
-	if (recursion_lvl == 4)
-		print(c, 2);
-	for (; a != found; a--)
-		tmp.insert(std::pair<unsigned int, unsigned int>(b--, a->second));
-	for (unsigned int it(0); it < tmp.size(); it++)
-	{
-		i--;
-		c.erase(prev);
-		prev = i;
-	}
-	unsigned int index(found->first);
-	for (int a(0); a < (recursion_lvl >> 1); a++)
-	{
-    	c.insert(std::pair<unsigned int, unsigned int>(++index, num->second));
-		num++;
-	}
-	iterator n(tmp.begin());
-	for (unsigned int a(0); a < tmp.size(); a++)
-	{
-		c.insert(std::pair<unsigned int, unsigned int>(++index, n->second));
-		n++;
-	}
+    T start = next(it, -pair_level + 1);
+    T end = next(start, pair_level);
+    while (start != end)
+    {
+        std::iter_swap(start, next(start, pair_level));
+        start++;
+    }
 }
 
-
-template <typename T>
-void PmergeMe::insertPend(T &pend, typename T::iterator curr, int recursion_lvl)
+template <typename T> void PmergeMe::_merge_insertion_sort(T& container, int pair_level)
 {
-	for (int a(0); a < (recursion_lvl >> 1); a++)
-	{
-		pend.push_back(*curr);
-		curr--;
-	}
+    typedef typename T::iterator Iterator;
+
+    int pair_units_nbr = container.size() / pair_level;
+    if (pair_units_nbr < 2)
+        return;
+
+    /* If there is an odd pair, we ignore it during swapping.
+       It will go to the pend as the last pair. */
+    bool is_odd = pair_units_nbr % 2 == 1;
+
+    /* It's important to caluclate the end position until which we should iterate.
+       We can have a set of values like:
+       ((1 2) (3 4)) ((3 8) (2 6)) | 0
+       where there are numbers (0 in this case) which can't even form a pair.
+       Those values should be ignored. */
+    Iterator start = container.begin();
+    Iterator last = next(container.begin(), pair_level * (pair_units_nbr));
+    Iterator end = next(last, -(is_odd * pair_level));
+
+    /* Swap pairs of numbers, pairs, pairs of pairs etc by the biggest pair
+       number. After each swap we recurse. */
+    int jump = 2 * pair_level;
+    for (Iterator it = start; it != end; std::advance(it, jump))
+    {
+        Iterator this_pair = next(it, pair_level - 1);
+        Iterator next_pair = next(it, pair_level * 2 - 1);
+        if (*this_pair > *next_pair)
+        {
+            _swap_pair(this_pair, pair_level);
+        }
+    }
+    _merge_insertion_sort(container, pair_level * 2);
+
+    /* Main contains an already sorted sequence.
+       Pend stores a yet to be sorted numbers.
+       List data structure for quick random insertion and deletion.
+       They contain iterators instead of the numbers themselves because
+       iterators + pair_level contain all the information about the stored
+       ranges of numbers. */
+    std::vector<Iterator> main;
+    std::vector<Iterator> pend;
+
+    /* Initialize the main chain with the {b1, a1}. */
+    main.insert(main.end(), next(container.begin(), pair_level - 1));
+    main.insert(main.end(), next(container.begin(), pair_level * 2 - 1));
+
+    /* Insert the rest of a's into the main chain.
+       Insert the rest of b's into the pend. */
+    for (int i = 4; i <= pair_units_nbr; i += 2)
+    {
+        pend.insert(pend.end(), next(container.begin(), pair_level * (i - 1) - 1));
+        main.insert(main.end(), next(container.begin(), pair_level * i - 1));
+    }
+
+    /* Insert the pend into the main in the order determined by the
+       Jacobsthal numbers. For example: 3 2 -> 5 4 -> 11 10 9 8 7 6 -> etc.
+       During insertion, main numbers serve as an upper bound for inserting numbers,
+       in order to save number of comparisons, as we know already that, for example,
+       b5 is lesser than a5, we binary search only until a5, not until the end
+       of the container.
+           We can calculate the index of the bound element. With the way I do it,
+           the index of the bound is inserted_numbers + current_jacobsthal_number. */
+    int prev_jacobsthal = _jacobsthal_number(1);
+    int inserted_numbers = 0;
+    for (int k = 2;; k++)
+    {
+        int curr_jacobsthal = _jacobsthal_number(k);
+        int jacobsthal_diff = curr_jacobsthal - prev_jacobsthal;
+		int offset = 0;
+        if (jacobsthal_diff > static_cast<int>(pend.size()))
+            break;
+        int nbr_of_times = jacobsthal_diff;
+        typename std::vector<Iterator>::iterator pend_it = next(pend.begin(), jacobsthal_diff - 1);
+        typename std::vector<Iterator>::iterator bound_it =
+            next(main.begin(), curr_jacobsthal + inserted_numbers);
+        while (nbr_of_times)
+        {
+            typename std::vector<Iterator>::iterator idx =
+                std::upper_bound(main.begin(), bound_it, *pend_it, _comp<Iterator>);
+            typename std::vector<Iterator>::iterator inserted = main.insert(idx, *pend_it);
+            nbr_of_times--;
+            pend_it = pend.erase(pend_it);
+            std::advance(pend_it, -1);
+            /* Sometimes the inserted number in inserted at the exact index of where the bound should be.
+			   When this happens, it eclipses the bound of the next pend, and it does more comparisons
+			   than it should. We need to offset when this happens. */
+            offset += (inserted - main.begin()) == curr_jacobsthal + inserted_numbers;
+			bound_it = next(main.begin(), curr_jacobsthal + inserted_numbers - offset);
+        }
+        prev_jacobsthal = curr_jacobsthal;
+        inserted_numbers += jacobsthal_diff;
+		offset = 0;
+    }
+
+    /* Insert the remaining elements in the sequential order. Here we also want to
+       perform as less comparisons as possible, so we calculate the starting bound
+       to insert pend number to be the pair of the first pend number. If the first
+       pend number is b6, the bound is a6, if the pend number is b8, the bound is a8 etc.
+       With the way I do it the index of bound is
+       size_of_main - size_of_pend + index_of_current_pend. */
+    for (size_t i = 0; i < pend.size(); i++)
+    {
+        typename std::vector<Iterator>::iterator curr_pend = next(pend.begin(), i);
+        typename std::vector<Iterator>::iterator curr_bound =
+            next(main.begin(), main.size() - pend.size() + i);
+        typename std::vector<Iterator>::iterator idx =
+            std::upper_bound(main.begin(), curr_bound, *curr_pend, _comp<Iterator>);
+        main.insert(idx, *curr_pend);
+    }
+
+    /* Insert an odd number to the main. We can make no assumptions over the odd number,
+       since it can be as low or as big as anything. Hence the bound is the end of the main chain.
+     */
+    if (is_odd)
+    {
+        typename T::iterator odd_pair = next(end, pair_level - 1);
+        typename std::vector<Iterator>::iterator idx =
+            std::upper_bound(main.begin(), main.end(), odd_pair, _comp<Iterator>);
+        main.insert(idx, odd_pair);
+    }
+
+    /* Use copy vector to store all the numbers, in order not to overwrite the
+       original iterators. */
+    std::vector<int> copy;
+    copy.reserve(container.size());
+    for (typename std::vector<Iterator>::iterator it = main.begin(); it != main.end(); it++)
+    {
+        for (int i = 0; i < pair_level; i++)
+        {
+            Iterator pair_start = *it;
+            std::advance(pair_start, -pair_level + i + 1);
+            copy.insert(copy.end(), *pair_start);
+        }
+    }
+
+    /* Replace values in the original container. */
+    Iterator container_it = container.begin();
+    std::vector<int>::iterator copy_it = copy.begin();
+    while (copy_it != copy.end())
+    {
+        *container_it = *copy_it;
+        container_it++;
+        copy_it++;
+    }
 }
-
-template <typename T> 
-typename T::iterator PmergeMe::recurSearch(T &c, int start, int end, typename T::iterator &found, typename T::iterator to_search, int recursion_lvl)
-{
-	typedef typename T::iterator iterator;
-	
-	iterator mid(c.begin());
-	if (end - start <= (recursion_lvl >> 1))
-		return (found);
-	while (start <= (end >> 1))
-	{
-		for (int a(0); a < (recursion_lvl >> 1); a++)
-			mid++;
-		start += recursion_lvl >> 1;
-	}
-	mid--;
-	found = mid;
-	std::cout << start << "\n";
-	if (mid->second == to_search->second)
-		return (found);
-	else if (mid->second > to_search->second)
-		return (recurSearch(c, start, end, found, to_search, recursion_lvl));
-	else
-		return (recurSearch(c, start, end, found, to_search, recursion_lvl));
-	return (found);
-}
-
-template <typename T> 
-void PmergeMe::binarySearch(T &c, T &p, int recursion_lvl)
-{
-	typedef typename T::iterator iterator;
-
-	iterator to_search(p.begin());
-	iterator found(c.begin());
-	int end = ((c.size() / (recursion_lvl >> 1)) - 1) * (recursion_lvl >> 1);
-	for (int a(1); a < (recursion_lvl >> 1) ; a++)
-		++to_search;
-	recurSearch(c, 0, end, found, to_search, recursion_lvl);	
-	for (int a(1); a < (recursion_lvl >> 1) ; a++)
-		--to_search;
-	if (recursion_lvl == 4)
-		print(p, 2);
-	addMain(c, found, to_search, recursion_lvl);
-}
-
-
-template <typename T>
-void PmergeMe::oddElement(T &c, T &pend, typename T::iterator prev, int recursion_lvl)
-{
-	typedef typename T::iterator iterator;
-
-	pend.clear();
-	prev = c.end();
-	int end = (c.size() / (recursion_lvl >> 1)) - 1;
-	end *= (recursion_lvl >> 1);
-	end = (c.size() - end) - (recursion_lvl >> 1);
-	for (int a(-1); a < end; a++)
-		prev--;
-	insertPend(pend, prev, recursion_lvl);
-	deleteMain(c, prev, recursion_lvl);
-	iterator to_search(pend.begin());
-	iterator found(c.begin());
-	for (int a(1); a < (recursion_lvl >> 1) ; a++)
-		++to_search;
-	end = (c.size() / (recursion_lvl >> 1)) * (recursion_lvl >> 1);
-	recurSearch(c, 0, end, found, to_search, recursion_lvl);	
-	for (int a(1); a < (recursion_lvl >> 1) ; a++)
-		--to_search;
-	addMain(c, found, to_search, recursion_lvl);
-}
-
-template <typename T>
-bool PmergeMe::checkOdd(T &c, int recursion_lvl)
-{
-	int i(c.size() / (recursion_lvl >> 1));
-	if (i % 2 != 0)
-		return (true);
-	return (false);
-}
-
-
-template <typename T>
-void PmergeMe::addRes(T &c, T &r, int recursion_lvl)
-{
-	typename T::iterator curr(c.begin());
-	int posible_pair = c.size() / (recursion_lvl >> 1);
-	int total_number_pair = posible_pair * (recursion_lvl >> 1);
-	int res = (int)c.size() - total_number_pair;
-	
-	std::advance(curr, total_number_pair);
-	for (int i(0); i < res; i++)
-	{
-		r.push_back(*curr);
-		curr++;
-	}
-	//aqui eliminas lo que hay en main
-	for (int i(0); i < res; res--)
-		c.erase(c.begin() + res);
-}
-
-template <typename T>
-void PmergeMe::backRes(T &c, T &r)
-{
-	typename T::iterator curr(c.begin());
-	for (unsigned int i(0); i < r.size(); i++)
-	{
-		c.push_back(*curr);
-		curr++;
-	}
-}
-
-template <typename T>
-void PmergeMe::binaryInsertion(T &c, int recursion_lvl)
-{
-	// typedef typename T::iterator iterator;
-	if (recursion_lvl == 0)
-		return ;
-	if (((int)c.size() - recursion_lvl) < (recursion_lvl >> 1))
-		binaryInsertion(c, recursion_lvl >> 1);
-	//containers
-	T pend;
-	T odd;
-	T res;
-	//iterators
-	// iterator curr(c.begin() + (recursion_lvl >> 1) - 1);
-	res.clear();
-	addRes(c, res, recursion_lvl);
-
-	backRes(c, res);
-		
-	//antes de acabar la recursion debes volver a agregar los elementos de res en el main
-	print(res);
-	// iterator prev(c.begin());
-	/*
-	if (recursion_lvl == 8)
-		return ;
-	T pend;
-	iterator curr(c.begin());
-	iterator prev;
-	iterator end = c.end();
-	end--;
-	for (int a(1); a < recursion_lvl; a++)
-		curr++;
-	int odd(1);
-	int flag(0);
-	do
-	{
-		prev = my_prev<T>(curr, (recursion_lvl >> 1));
-		if (odd != 1 && flag == 0 && odd % 2 != 0)
-		{
-			insertPend(pend, prev, recursion_lvl);
-			deleteMain(c, prev, recursion_lvl);
-			binarySearch(c, pend, recursion_lvl);
-		}
-		for (int a(0); a < recursion_lvl; a++)
-		{
-			curr++;
-			if (curr == c.end())
-				flag++;	
-		}
-		odd += 2;
-	}
-	while(curr != end++);
-	if (checkOdd(c, recursion_lvl))
-		oddElement(c, pend, prev, recursion_lvl);
-	binaryInsertion(c, recursion_lvl >> 1);
-	*/
-}
-
-template <typename T>
-typename T::iterator PmergeMe::my_prev(typename T::iterator pos, int recursion_lvl)
-{
-	for (int a(0); a < recursion_lvl; a++)
-		pos--;
-	return (pos);
-}
-
-template <typename T> 
-void PmergeMe::my_swap(T &c, typename T::iterator pos, int recursion_lvl)
-{
-	(void)c;
-	typedef typename T::iterator iterator;
-	iterator prev;
-	iterator curr = pos;
-	prev = my_prev<T>(curr, (recursion_lvl >> 1));
-	for (int a(0); a < (recursion_lvl >> 1); a++)
-	{
-		std::swap(*curr, *prev);
-		curr--;
-		prev--;
-	}
-}
-
-template <typename T> 
-int PmergeMe::pairSort(T &c, int recursion_lvl)
-{
-	typedef typename T::iterator iterator;
-	if ((unsigned int)(recursion_lvl << 1) > c.size())
-		return (recursion_lvl);
-	bool curr_exist = true;
-	iterator curr(c.begin());
-	for (int i(0); i < recursion_lvl - 1; i++)
-	{
-		if (curr++ == c.end())
-			curr_exist = false;
-	}
-	iterator prev;
-	for (unsigned int i(0); i < c.size(); i += recursion_lvl)
-	{
-		prev = my_prev<T>(curr, (recursion_lvl >> 1));
-		if (curr_exist && *prev > *curr)
-			my_swap(c, curr, recursion_lvl);
-		for (int a(0); a < recursion_lvl; a++)
-		{
-			if (curr++ == c.end())
-				curr_exist = false;
-		}
-	}
-	return (pairSort(c, recursion_lvl << 1));
-}
-
-template <typename T> 
-void PmergeMe::insertValue(std::string input, T &container)
-{
-	unsigned int num;
-	std::stringstream ss(input);
-	while (ss >> num)
-		container.push_back(num);
-}
-
-template <typename T> 
-void PmergeMe::print(T &a)
-{
-    for (typename T::iterator it(a.begin()); it != a.end(); ++it) 
-		std::cout << *it << " ";
-	std::cout << "\n";
-}
-
-#endif //PMERGEME_HPP 
+#endif
