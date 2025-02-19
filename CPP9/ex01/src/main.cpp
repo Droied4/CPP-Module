@@ -6,18 +6,17 @@
 /*   By: deordone <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:12:48 by deordone          #+#    #+#             */
-/*   Updated: 2025/02/11 23:15:07 by droied           ###   ########.fr       */
+/*   Updated: 2025/02/19 15:19:21 by deordone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
-
+ 
 static bool num_limits(i_vec cont, int min, int max)
 {
 	i_vec::iterator it(cont.begin());
 	for (unsigned int i(0); i < cont.size(); i++)
 	{
-		it++;
 		if (!(*it >= min && *it <= max))
 			return (false);
 	}
